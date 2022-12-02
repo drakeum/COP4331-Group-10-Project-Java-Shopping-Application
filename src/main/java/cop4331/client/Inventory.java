@@ -1,16 +1,43 @@
 package cop4331.client;
+import cop4331.sorters.SorterByPrice;
+
 import java.io.*;
-import java.util.LinkedHashMap;
+import java.util.*;
 
 /**
  * @author Hunter B.
  */
 public class Inventory implements Serializable
 {
-    LinkedHashMap<Integer, Product> productList = new LinkedHashMap<>();
+    private LinkedHashMap<Integer, Product> productList = new LinkedHashMap<>();
     private Inventory()
     {
 
+    }
+
+    public LinkedHashMap<Integer, Product> getProductList()
+    {
+        return productList;
+    }
+
+    public void sortByPrice()
+    {
+        //create the modified comparator
+        SorterByPrice sorter = new SorterByPrice();
+        //convert hashmap to set for sorting
+        Set<Map.Entry<Integer, Product>> items = productList.entrySet();
+        //convert set to list for sorting
+        List<Map.Entry<Integer, Product>> itemList = new ArrayList<>(items);
+        //sort the list
+        Collections.sort(itemList, sorter);
+        //make new hashmap to put sorted items in to
+        LinkedHashMap<Integer, Product> sortedItems = new LinkedHashMap<>();
+        for(Map.Entry<Integer, Product> item : itemList)
+        {
+            sortedItems.put(item.getKey(), item.getValue());
+        }
+        //set inventory equal to sorted hashmap
+        productList = sortedItems;
     }
 
     public int size()

@@ -3,6 +3,8 @@ package cop4331.client;
 import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
+import java.util.Map;
+import java.util.Set;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -12,6 +14,35 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
  */
 class InventoryTest
 {
+
+    @Test
+    void sortByPrice()
+    {
+        Inventory.getInstance().addProduct(1, "Apple", 10, 2.35, 3.00);
+        Inventory.getInstance().addProduct(2, "Orange", 15, 1.35, 2.00);
+        Inventory.getInstance().addProduct(4, "Pineapple", 5, 2.35, 2.40);
+        Inventory.getInstance().addProduct(3, "Bunny", 1, 1.35, 200.00);
+        Inventory.getInstance().addProduct(5, "Can", 1, 1.35, 0.5);
+
+        System.out.println("Before sort:");
+        Set<Map.Entry<Integer, Product>> preSort = Inventory.getInstance().getProductList().entrySet();
+        for(Map.Entry<Integer, Product> entry: preSort)
+        {
+            System.out.println(entry.getKey() + " - " + entry.getValue().getName() + " - " + entry.getValue().getPrice());
+        }
+
+        Inventory.getInstance().sortByPrice();
+
+        System.out.println("After sort:");
+        Set<Map.Entry<Integer, Product>> postSort = Inventory.getInstance().getProductList().entrySet();
+        for(Map.Entry<Integer, Product> entry: postSort)
+        {
+            System.out.println(entry.getKey() + " - " + entry.getValue().getName() + " - " + entry.getValue().getPrice());
+        }
+
+
+
+    }
 
     @Test
     void load()
