@@ -3,9 +3,9 @@ package cop4331.client;
 import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 
+import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 
@@ -40,7 +40,34 @@ class InventoryTest
             System.out.println(entry.getKey() + " - " + entry.getValue().getName() + " - " + entry.getValue().getPrice());
         }
 
+        Set<Integer> postSortKeySet = Inventory.getInstance().getProductList().keySet();
+        Integer[] postSortKeySetArr = new Integer[5];
+        int i = 0;
+        for(Integer entry: postSortKeySet)
+        {
+            postSortKeySetArr[i++] = entry;
+        }
 
+        LinkedHashMap<Integer, Product> sortCheck = new LinkedHashMap<>();
+        Product prod = new Product(5, "Can", 1, 1.35, 0.5);
+        sortCheck.put(prod.getId(), prod);
+        prod = new Product(2, "Orange", 15, 1.35, 2.00);
+        sortCheck.put(prod.getId(), prod);
+        prod = new Product(4, "Pineapple", 5, 2.35, 2.40);
+        sortCheck.put(prod.getId(), prod);
+        prod = new Product(1, "Apple", 10, 2.35, 3.00);
+        sortCheck.put(prod.getId(), prod);
+        prod = new Product(3, "Bunny", 1, 1.35, 200.00);
+        sortCheck.put(prod.getId(), prod);
+        Set<Integer> sortCheckKeySet = sortCheck.keySet();
+        Integer[] sortCheckKeySetArr = new Integer[5];
+        int j = 0;
+        for(Integer entry: sortCheckKeySet)
+        {
+            sortCheckKeySetArr[j++] = entry;
+        }
+
+        assertArrayEquals(postSortKeySetArr, sortCheckKeySetArr);
 
     }
 
