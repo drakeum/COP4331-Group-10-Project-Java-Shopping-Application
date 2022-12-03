@@ -20,7 +20,7 @@ public class Inventory implements Serializable
         return productList;
     }
 
-    public void sortByPrice()
+    public void sortByPriceAsc()
     {
         //create the modified comparator
         SorterByPrice sorter = new SorterByPrice();
@@ -29,7 +29,28 @@ public class Inventory implements Serializable
         //convert set to list for sorting
         List<Map.Entry<Integer, Product>> itemList = new ArrayList<>(items);
         //sort the list
-        Collections.sort(itemList, sorter);
+        itemList.sort(sorter);
+        //make new hashmap to put sorted items in to
+        LinkedHashMap<Integer, Product> sortedItems = new LinkedHashMap<>();
+        for(Map.Entry<Integer, Product> item : itemList)
+        {
+            sortedItems.put(item.getKey(), item.getValue());
+        }
+        //set inventory equal to sorted hashmap
+        productList = sortedItems;
+    }
+
+    public void sortByPriceDesc()
+    {
+        //create the modified comparator
+        SorterByPrice sorter = new SorterByPrice();
+        //convert hashmap to set for sorting
+        Set<Map.Entry<Integer, Product>> items = productList.entrySet();
+        //convert set to list for sorting
+        List<Map.Entry<Integer, Product>> itemList = new ArrayList<>(items);
+        //sort the list
+        itemList.sort(sorter);
+        Collections.reverse(itemList);
         //make new hashmap to put sorted items in to
         LinkedHashMap<Integer, Product> sortedItems = new LinkedHashMap<>();
         for(Map.Entry<Integer, Product> item : itemList)

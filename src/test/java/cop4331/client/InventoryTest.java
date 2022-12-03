@@ -16,7 +16,7 @@ class InventoryTest
 {
 
     @Test
-    void sortByPrice()
+    void sortByPriceAsc()
     {
         Inventory.getInstance().addProduct(1, "Apple", 10, 2.35, 3.00);
         Inventory.getInstance().addProduct(2, "Orange", 15, 1.35, 2.00);
@@ -31,7 +31,7 @@ class InventoryTest
             System.out.println(entry.getKey() + " - " + entry.getValue().getName() + " - " + entry.getValue().getPrice());
         }
 
-        Inventory.getInstance().sortByPrice();
+        Inventory.getInstance().sortByPriceAsc();
 
         System.out.println("After sort:");
         Set<Map.Entry<Integer, Product>> postSort = Inventory.getInstance().getProductList().entrySet();
@@ -69,6 +69,61 @@ class InventoryTest
 
         assertArrayEquals(postSortKeySetArr, sortCheckKeySetArr);
 
+    }
+
+    @Test
+    void sortByPriceDesc()
+    {
+        Inventory.getInstance().addProduct(1, "Apple", 10, 2.35, 3.00);
+        Inventory.getInstance().addProduct(2, "Orange", 15, 1.35, 2.00);
+        Inventory.getInstance().addProduct(4, "Pineapple", 5, 2.35, 2.40);
+        Inventory.getInstance().addProduct(3, "Bunny", 1, 1.35, 200.00);
+        Inventory.getInstance().addProduct(5, "Can", 1, 1.35, 0.5);
+
+        System.out.println("Before sort:");
+        Set<Map.Entry<Integer, Product>> preSort = Inventory.getInstance().getProductList().entrySet();
+        for(Map.Entry<Integer, Product> entry: preSort)
+        {
+            System.out.println(entry.getKey() + " - " + entry.getValue().getName() + " - " + entry.getValue().getPrice());
+        }
+
+        Inventory.getInstance().sortByPriceDesc();
+
+        System.out.println("After sort:");
+        Set<Map.Entry<Integer, Product>> postSort = Inventory.getInstance().getProductList().entrySet();
+        for(Map.Entry<Integer, Product> entry: postSort)
+        {
+            System.out.println(entry.getKey() + " - " + entry.getValue().getName() + " - " + entry.getValue().getPrice());
+        }
+
+        Set<Integer> postSortKeySet = Inventory.getInstance().getProductList().keySet();
+        Integer[] postSortKeySetArr = new Integer[5];
+        int i = 0;
+        for(Integer entry: postSortKeySet)
+        {
+            postSortKeySetArr[i++] = entry;
+        }
+
+        LinkedHashMap<Integer, Product> sortCheck = new LinkedHashMap<>();
+        Product prod = new Product(3, "Bunny", 1, 1.35, 200.00);
+        sortCheck.put(prod.getId(), prod);
+        prod = new Product(1, "Apple", 10, 2.35, 3.00);
+        sortCheck.put(prod.getId(), prod);
+        prod = new Product(4, "Pineapple", 5, 2.35, 2.40);
+        sortCheck.put(prod.getId(), prod);
+        prod = new Product(2, "Orange", 15, 1.35, 2.00);
+        sortCheck.put(prod.getId(), prod);
+        prod = new Product(5, "Can", 1, 1.35, 0.5);
+        sortCheck.put(prod.getId(), prod);
+        Set<Integer> sortCheckKeySet = sortCheck.keySet();
+        Integer[] sortCheckKeySetArr = new Integer[5];
+        int j = 0;
+        for(Integer entry: sortCheckKeySet)
+        {
+            sortCheckKeySetArr[j++] = entry;
+        }
+
+        assertArrayEquals(postSortKeySetArr, sortCheckKeySetArr);
     }
 
     @Test
