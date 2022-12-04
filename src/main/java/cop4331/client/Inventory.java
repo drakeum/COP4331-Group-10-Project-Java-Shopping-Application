@@ -1,4 +1,5 @@
 package cop4331.client;
+import cop4331.sorters.SorterByName;
 import cop4331.sorters.SorterByPrice;
 
 import java.io.*;
@@ -28,7 +29,7 @@ public class Inventory implements Serializable
         Set<Map.Entry<Integer, Product>> items = productList.entrySet();
         //convert set to list for sorting
         List<Map.Entry<Integer, Product>> itemList = new ArrayList<>(items);
-        //sort the list
+        //sort the list by price
         itemList.sort(sorter);
         //make new hashmap to put sorted items in to
         LinkedHashMap<Integer, Product> sortedItems = new LinkedHashMap<>();
@@ -48,8 +49,51 @@ public class Inventory implements Serializable
         Set<Map.Entry<Integer, Product>> items = productList.entrySet();
         //convert set to list for sorting
         List<Map.Entry<Integer, Product>> itemList = new ArrayList<>(items);
-        //sort the list
+        //sort the list by price
         itemList.sort(sorter);
+        //reverse the sorting
+        Collections.reverse(itemList);
+        //make new hashmap to put sorted items in to
+        LinkedHashMap<Integer, Product> sortedItems = new LinkedHashMap<>();
+        for(Map.Entry<Integer, Product> item : itemList)
+        {
+            sortedItems.put(item.getKey(), item.getValue());
+        }
+        //set inventory equal to sorted hashmap
+        productList = sortedItems;
+    }
+
+    public void sortByNameAsc()
+    {
+        //create the modified comparator
+        SorterByName sorter = new SorterByName();
+        //convert hashmap to set for sorting
+        Set<Map.Entry<Integer, Product>> items = productList.entrySet();
+        //convert set to list for sorting
+        List<Map.Entry<Integer, Product>> itemList = new ArrayList<>(items);
+        //sort the list by name
+        itemList.sort(sorter);
+        //make new hashmap to put sorted items in to
+        LinkedHashMap<Integer, Product> sortedItems = new LinkedHashMap<>();
+        for(Map.Entry<Integer, Product> item : itemList)
+        {
+            sortedItems.put(item.getKey(), item.getValue());
+        }
+        //set inventory equal to sorted hashmap
+        productList = sortedItems;
+    }
+
+    public void sortByNameDesc()
+    {
+        //create the modified comparator
+        SorterByName sorter = new SorterByName();
+        //convert hashmap to set for sorting
+        Set<Map.Entry<Integer, Product>> items = productList.entrySet();
+        //convert set to list for sorting
+        List<Map.Entry<Integer, Product>> itemList = new ArrayList<>(items);
+        //sort the list by name
+        itemList.sort(sorter);
+        //reverse the sorting
         Collections.reverse(itemList);
         //make new hashmap to put sorted items in to
         LinkedHashMap<Integer, Product> sortedItems = new LinkedHashMap<>();
