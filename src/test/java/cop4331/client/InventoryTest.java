@@ -258,6 +258,7 @@ class InventoryTest
         } catch (IOException e)
         {
             System.out.println("IOException occurred");
+            throw new RuntimeException(e);
         }
 
         //remove a product from the inventory
@@ -272,6 +273,7 @@ class InventoryTest
         } catch (IOException | ClassNotFoundException e)
         {
             System.out.println("IOException occurred");
+            throw new RuntimeException(e);
         }
 
         int loadedSize = Inventory.getInstance().size();

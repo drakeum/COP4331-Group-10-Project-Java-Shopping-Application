@@ -126,18 +126,45 @@ public class Inventory implements Serializable
     public void removeProduct(int id)
     {
         productList.remove(id);
+        try
+        {
+            save();
+        }
+        catch (IOException e)
+        {
+            System.out.println("IOException occurred");
+            throw new RuntimeException(e);
+        }
     }
 
     public void addProduct(int id, String name, int quantity, double cost, double price)
     {
         Product newProduct = new Product(id, name, quantity, cost, price);
         productList.put(newProduct.getId(), newProduct);
+        try
+        {
+            save();
+        }
+        catch (IOException e)
+        {
+            System.out.println("IOException occurred");
+            throw new RuntimeException(e);
+        }
     }
 
     public void editProduct(int id, String name, int quantity, double cost, double price)
     {
         Product editedProduct = new Product(id, name, quantity, cost, price);
         productList.replace(id, editedProduct);
+        try
+        {
+            save();
+        }
+        catch (IOException e)
+        {
+            System.out.println("IOException occurred");
+            throw new RuntimeException(e);
+        }
     }
 
     public static Inventory getInstance()

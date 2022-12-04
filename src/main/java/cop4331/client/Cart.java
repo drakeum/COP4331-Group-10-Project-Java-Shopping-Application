@@ -26,7 +26,23 @@ public class Cart
         totalPayment += prod.getPrice();
     }
 
+    public void removeItem(int id)
+    {
+        Iterator<Product> iter = getCartItems();
+        while(iter.hasNext())
+        {
+            Product currentProd = iter.next();
+            if(currentProd.getId() == id)
+            {
+                productList.remove(currentProd);
+            }
+        }
+    }
 
+    public void confirmCart()
+    {
+
+    }
 
     public static Cart getInstance()
     {
