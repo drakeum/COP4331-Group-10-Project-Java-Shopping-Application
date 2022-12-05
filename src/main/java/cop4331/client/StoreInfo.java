@@ -33,6 +33,8 @@ public class StoreInfo implements Serializable
     public void buyProductForStore(Product prod)
     {
         totalCosts += prod.getCost();
+        int prevQuant = prod.getQuantity();
+        prod.setQuantity(prevQuant + 1);
         try
         {
             save();
@@ -47,6 +49,8 @@ public class StoreInfo implements Serializable
     public void sellProduct(Product prod)
     {
         totalRevenue += prod.getPrice();
+        int prevQuant = prod.getQuantity();
+        prod.setQuantity(prevQuant - 1);
         try
         {
             save();

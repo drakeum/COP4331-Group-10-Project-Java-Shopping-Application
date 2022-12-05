@@ -34,6 +34,7 @@ public class Cart
             Product currentProd = iter.next();
             if(currentProd.getId() == id)
             {
+                totalPayment -= currentProd.getPrice();
                 productList.remove(currentProd);
             }
         }
@@ -41,7 +42,16 @@ public class Cart
 
     public void confirmCart()
     {
+        Iterator<Product> iter = getCartItems();
+        while(iter.hasNext())
+        {
+            StoreInfo.getInstance().sellProduct(iter.next());
+        }
+    }
 
+    public double getTotalPayment()
+    {
+        return totalPayment;
     }
 
     public static Cart getInstance()
