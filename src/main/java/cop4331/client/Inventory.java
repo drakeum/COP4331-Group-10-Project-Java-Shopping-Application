@@ -187,7 +187,7 @@ public class Inventory implements Serializable
     }
 
     /**
-     * Adds a product to the inventory and saves the state of Inventory
+     * Adds a product to the inventory, buys the amount added for the store, and saves the state of Inventory
      * @param id the id of the product to add
      * @param name the name of the product to add
      * @param quantity the quantity of the product to add
