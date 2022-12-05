@@ -407,7 +407,7 @@ class InventoryTest
 
         System.out.println("Id: " + Inventory.getInstance().getProductList().get(1).getId() + " - Name: " + Inventory.getInstance().getProductList().get(1).getName() + " - Quantity: " + Inventory.getInstance().getProductList().get(1).getQuantity() + " - Cost: " + Inventory.getInstance().getProductList().get(1).getCost() + " - Price: " + Inventory.getInstance().getProductList().get(1).getPrice());
 
-        Inventory.getInstance().editProduct(1, "Apple Edit", 11, 2.85, 3.00);
+        Inventory.getInstance().editProduct(1, "Apple Edit", 11, 2.85, 3.00, 0);
         System.out.println("Item post-edit:");
         System.out.println("Id: " + Inventory.getInstance().getProductList().get(1).getId() + " - Name: " + Inventory.getInstance().getProductList().get(1).getName() + " - Quantity: " + Inventory.getInstance().getProductList().get(1).getQuantity() + " - Cost: " + Inventory.getInstance().getProductList().get(1).getCost() + " - Price: " + Inventory.getInstance().getProductList().get(1).getPrice());
 
