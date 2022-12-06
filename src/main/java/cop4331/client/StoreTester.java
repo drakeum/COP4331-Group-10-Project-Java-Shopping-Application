@@ -9,8 +9,13 @@ public class StoreTester
 {
     public static void main(String[] args)
     {
-        Inventory inv1 = new Inventory();
-        inv1.addProduct(10, "car", 20, 15, 80);
-        InventoryUI invUI = new InventoryUI(inv1, false);
+        Inventory.getInstance().addProduct(10, "car", 20, 15, 80);
+        Inventory.getInstance().addProduct(12, "computer", 20, 15, 80);
+        Inventory.getInstance().addProduct(14, "tv", 20, 15, 80);
+        Inventory.getInstance().addProduct(15, "house", 20, 15, 80);
+        Inventory.getInstance().addProduct(16, "house2", 20, 15, 80);
+        Inventory.getInstance().addProduct(17, "house2", 20, 15, 80);
+        Inventory.getInstance().addProduct(18, "house2", 20, 15, 80);
+        InventoryUI invUI = new InventoryUI(Inventory.getInstance(), false);
     }
 }
