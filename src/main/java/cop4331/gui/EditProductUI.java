@@ -22,20 +22,22 @@ public class EditProductUI extends JFrame {
     private JLabel amountToBeSold = new JLabel("Amount to be sold: ");
     private JPanel pane = new JPanel();
     private Inventory inv = Inventory.getInstance();
+    private JPanel panel1 = new JPanel(new GridLayout(0, 2));
+    private JButton saveButton = new JButton("Save");
+    private JButton returnButton = new JButton("Return");
+    private JPanel panel2 = new JPanel();
+    private JButton confirmButton = new JButton("Confirm");
+    private JButton cancelButton = new JButton("Cancel");
     
     
     public EditProductUI(Product p1){
     this.setLayout(new BorderLayout());
-    JPanel panel1 = new JPanel(new GridLayout(0, 2));
-    JButton saveButton = new JButton("Save");
-    JButton returnButton = new JButton("Return");
     JTextField textFieldName = new JTextField(p1.getName(),10);
     JTextField textFieldQuantity = new JTextField(Integer.toString(p1.getQuantity()),10);
     JTextField textFieldCost = new JTextField(Double.toString(p1.getCost()),10);
     JTextField textFieldPrice = new JTextField(Double.toString(p1.getPrice()),10);
     JTextField textFieldAmountToBeSold = new JTextField(10);
     
-    JPanel panel2 = new JPanel();
     panel2.setPreferredSize(new Dimension(600, 600));
     panel2.add(panel1);
     panel1.add(name);
@@ -49,7 +51,8 @@ public class EditProductUI extends JFrame {
     panel1.add(amountToBeSold);
     panel1.add(textFieldAmountToBeSold);
     panel1.add(saveButton);
-     panel1.add(returnButton);
+    panel1.add(returnButton);
+    
     this.setSize(800,1000);
     saveButton.addActionListener(new ActionListener(){
     @Override
@@ -57,8 +60,7 @@ public class EditProductUI extends JFrame {
        dispose();
        ConfirmationUI confirmationUI = new ConfirmationUI();
        pane = confirmationUI.getPanel();
-       JButton confirmButton = new JButton("Confirm");
-       JButton cancelButton = new JButton("Cancel");
+       
        pane.add(confirmButton);
        confirmButton.addActionListener(new ActionListener(){
               @Override
@@ -68,14 +70,15 @@ public class EditProductUI extends JFrame {
               InventoryUI inv = new InventoryUI(true);
            }
          });
+       
        pane.add(cancelButton);
        cancelButton.addActionListener(new ActionListener(){
-              @Override
-              public void actionPerformed(ActionEvent e){
-              confirmationUI.dispose();
-              InventoryUI inv = new InventoryUI(true);
-           }
-         });
+            @Override
+            public void actionPerformed(ActionEvent e){
+            confirmationUI.dispose();
+            InventoryUI inv = new InventoryUI(true);
+           }    
+        });
        
      }
     });

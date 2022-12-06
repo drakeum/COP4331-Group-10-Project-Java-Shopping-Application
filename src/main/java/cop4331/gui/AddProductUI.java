@@ -20,18 +20,19 @@ public class AddProductUI extends JFrame {
     private JLabel quantity = new JLabel("Quantity: ");
     private JLabel cost = new JLabel("Cost: ");
     private JLabel price = new JLabel("Price: ");
+    private JButton saveButton = new JButton("Add Product");
+    private JButton returnButton = new JButton("Return");
+    private Inventory inv = Inventory.getInstance();
+    private JPanel panel1 = new JPanel(new GridLayout(0, 2));
+    private JTextField textFieldId = new JTextField(10);
+    private JTextField textFieldName = new JTextField(10);
+    private JTextField textFieldQuantity = new JTextField(10);
+    private JTextField textFieldCost = new JTextField(10);
+    private JTextField textFieldPrice = new JTextField(10);  
+    
     public AddProductUI(){
     
     this.setLayout(new BorderLayout());
-    JPanel panel1 = new JPanel(new GridLayout(0, 2));
-    
-    JButton saveButton = new JButton("Add Product");
-    JButton returnButton = new JButton("Return");
-    JTextField textFieldId = new JTextField(10);
-    JTextField textFieldName = new JTextField(10);
-    JTextField textFieldQuantity = new JTextField(10);
-    JTextField textFieldCost = new JTextField(10);
-    JTextField textFieldPrice = new JTextField(10);  
  
     JPanel panel2 = new JPanel();
     panel2.setPreferredSize(new Dimension(600, 600));
@@ -53,7 +54,6 @@ public class AddProductUI extends JFrame {
     saveButton.addActionListener(new ActionListener(){
     @Override
      public void actionPerformed(ActionEvent e){
-      Inventory inv = Inventory.getInstance();
       inv.addProduct(Integer.parseInt(textFieldId.getText()),textFieldName.getText(),Integer.parseInt(textFieldQuantity.getText()),Double.parseDouble(textFieldCost.getText()),Double.parseDouble(textFieldPrice.getText()));
       dispose();
       InventoryUI invUI = new InventoryUI(true);
