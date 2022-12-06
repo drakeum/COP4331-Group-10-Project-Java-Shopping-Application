@@ -45,6 +45,12 @@ public class LoginUI extends JFrame {
         loginButton.addActionListener((e) -> {
             System.out.println("Verifying credentials...");
 
+            if(username.getText().equals("seller")){
+
+            }
+            else{
+
+            }
             boolean loggedIn = LoginChecker.verifyCustomerCredentials(username.getText(), password.getText());
 
             System.out.println(loggedIn);
