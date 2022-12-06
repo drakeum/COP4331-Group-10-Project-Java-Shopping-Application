@@ -19,6 +19,6 @@ public class StoreTester
         Inventory.getInstance().addProduct(18, "house2", 20, 15, 80);
         
        // new LoginUI();
-        InventoryUI invUI = new InventoryUI(true);
+        InventoryUI invUI = new InventoryUI(false);
     }
 }

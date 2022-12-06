@@ -61,7 +61,7 @@ public class InventoryUI extends JFrame {
     addItemButton.addActionListener(new ActionListener(){
                 @Override
                 public void actionPerformed(ActionEvent e){
-                    AddProductUI addProd = new AddProductUI();
+                    NewProductUI addProd = new NewProductUI();
                     dispose();
                 }
             });

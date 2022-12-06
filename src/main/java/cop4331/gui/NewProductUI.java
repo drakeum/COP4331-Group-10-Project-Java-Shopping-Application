@@ -1,8 +1,7 @@
 package cop4331.gui;
 
 import cop4331.client.Inventory;
-import cop4331.client.Product;
-import cop4331.gui.InventoryUI;
+
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.GridLayout;
@@ -14,7 +13,7 @@ import javax.swing.*;
  *
  * @author Mark A.
  */
-public class AddProductUI extends JFrame {
+public class NewProductUI extends JFrame {
     private JLabel id = new JLabel("id: ");
     private JLabel name = new JLabel("Name: ");
     private JLabel quantity = new JLabel("Quantity: ");
@@ -30,7 +29,7 @@ public class AddProductUI extends JFrame {
     private JTextField textFieldCost = new JTextField(10);
     private JTextField textFieldPrice = new JTextField(10);  
     
-    public AddProductUI(){
+    public NewProductUI(){
     
     this.setLayout(new BorderLayout());
  
