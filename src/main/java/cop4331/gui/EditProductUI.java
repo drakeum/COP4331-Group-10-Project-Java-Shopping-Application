@@ -13,6 +13,7 @@ import javax.swing.*;
 /**
  *
  * @author Mark A.
+ * interface for the seller to edit existing products
  */
 public class EditProductUI extends JFrame {
     private JLabel name = new JLabel("Name: ");

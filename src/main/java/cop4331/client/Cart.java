@@ -140,6 +140,7 @@ public class Cart
     {
         return productList.size();
     }
+    
 
     /**
      * Getter method for the instance of the Cart class
