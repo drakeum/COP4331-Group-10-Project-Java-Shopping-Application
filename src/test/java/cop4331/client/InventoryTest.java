@@ -7,11 +7,13 @@ import java.util.*;
 import static org.junit.jupiter.api.Assertions.*;
 
 
+
 /**
  * @author Hunter B.
  */
 class InventoryTest
 {
+<<<<<<< Updated upstream
     /*NOTE: There isn't a test for save() or load(), as these methods are called by every relevant mutating method
     saves the inventory after each change, so it isn't possible to have the inventory NOT save in order to have a
     control check against a saved inventory
@@ -23,6 +25,9 @@ class InventoryTest
     they are run, so there is some code that is seemingly unnecessary
     */
 
+=======
+/*
+>>>>>>> Stashed changes
     @Test
     void sortByPriceAsc()
     {
@@ -327,4 +332,5 @@ class InventoryTest
         assertEquals(0, Double.compare(Inventory.getInstance().getProductList().get(1).getCost(), 2.85));
         assertEquals(0, Double.compare(Inventory.getInstance().getProductList().get(1).getPrice(), 3.00));
     }
+*/
 }
