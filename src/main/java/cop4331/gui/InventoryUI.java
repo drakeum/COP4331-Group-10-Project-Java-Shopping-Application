@@ -21,9 +21,10 @@ public class InventoryUI extends JFrame {
     private JButton homeButton = new JButton();
     private JButton addItemButton = new JButton();
     private Inventory inv = Inventory.getInstance();
+    private JPanel pane = new JPanel();
+    private ImageIcon home = new ImageIcon(new ImageIcon("home.png").getImage().getScaledInstance(50, 50, Image.SCALE_DEFAULT));
     
     public InventoryUI(Boolean userType){
-    ImageIcon home = new ImageIcon(new ImageIcon("home.png").getImage().getScaledInstance(50, 50, Image.SCALE_DEFAULT));
     homeButton.setIcon(home);
     if(!userType)
     homeButton.setBounds(30, 30, 30, 30);
@@ -67,6 +68,7 @@ public class InventoryUI extends JFrame {
         ProductUI p = new ProductUI(value, userType);
         JPanel tempPanel = p.getProductPanel();
         if(userType){
+            
             JButton editButton = new JButton("Edit");
             editButton.addActionListener(new ActionListener(){
                 @Override
@@ -74,8 +76,40 @@ public class InventoryUI extends JFrame {
                     EditProductUI prod = new EditProductUI(value);
                     dispose();
                 }
-            });
+                
+        });
+            
             JButton removeButton = new JButton("Remove");
+            removeButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e){
+                    
+                    dispose();
+                    ConfirmationUI confirmationUI = new ConfirmationUI();
+                    pane = confirmationUI.getPanel();
+                    JButton confirmButton = new JButton("Confirm");
+                    JButton cancelButton = new JButton("Cancel");
+                    pane.add(confirmButton);
+                    
+            confirmButton.addActionListener(new ActionListener(){
+                @Override
+                public void actionPerformed(ActionEvent e){
+                inv.removeProduct(value.getId());
+                confirmationUI.dispose();
+                InventoryUI inv = new InventoryUI(true);
+                }
+            });
+                pane.add(cancelButton);
+            cancelButton.addActionListener(new ActionListener(){
+                @Override
+                public void actionPerformed(ActionEvent e){
+                confirmationUI.dispose();
+                InventoryUI inv = new InventoryUI(true);
+                }
+            });
+                   
+            }
+            });
             editButton.setBounds(200, 100, 100, 50);
             removeButton.setBounds(200, 100, 100, 50);
             tempPanel.add(editButton);
@@ -112,7 +146,9 @@ public class InventoryUI extends JFrame {
     scrollPane.setPreferredSize(new Dimension(200, 200));
     scrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);  
     scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);  
-    this.getContentPane().add(scrollPane);  
+    this.getContentPane().add(scrollPane);
+    
+    this.add(pane);
     panel1.setBackground(Color.blue);
     this.add(scrollPane);
     this.add(panel1, BorderLayout.NORTH);
