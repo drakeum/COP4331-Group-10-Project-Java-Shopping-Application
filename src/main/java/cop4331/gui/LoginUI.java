@@ -1,5 +1,4 @@
 package cop4331.gui;
-
 import cop4331.client.LoginChecker;
 
 import javax.swing.*;
@@ -10,20 +9,17 @@ import java.awt.*;
  * Login user interface
  * Customer is able to log in
  */
-public class LoginUI extends JFrame
-{
-    //    private static JLabel password1, label;
-//    private static JTextField username;
-//    private static JButton button;
-//    private static JPasswordField Password;
-    LoginUI()
-    {
+
+public class LoginUI extends JFrame{ 
+    
+    public LoginUI(){
         //this.setLayout(new FlowLayout());
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setTitle("Login");
         this.setLocation(500, 100);
         this.setResizable(false);
-        this.setSize(500, 500);
+
+        this.setSize(500,500);
 
         JPanel loginFormPanel = new JPanel();
         loginFormPanel.setLayout(null);
@@ -47,20 +43,21 @@ public class LoginUI extends JFrame
 
         JButton loginButton = new JButton("Login");
         loginButton.setBounds(100, 110, 90, 25);
-        loginButton.addActionListener((e) ->
-        {
-            System.out.println("Verifying credentials...");
 
-            if (username.getText().equals("seller"))
-            {
+        loginButton.addActionListener((e) -> {
+            LoginChecker loginChecker = new LoginChecker();
 
-            } else
-            {
+            boolean loggedIn = loginChecker.verifyCredentials(username.getText(), password.getText());
 
+            if(username.getText().equals("seller")){
+                new InventoryUI(true);
             }
-            boolean loggedIn = LoginChecker.verifyCustomerCredentials(username.getText(), password.getText());
+            else{
+                new InventoryUI(false);
+            }
+            this.dispose();
 
-            System.out.println(loggedIn);
+        
         });
 
         loginFormPanel.add(loginButton);
