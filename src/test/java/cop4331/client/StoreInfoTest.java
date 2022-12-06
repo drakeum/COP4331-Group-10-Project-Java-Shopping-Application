@@ -1,7 +1,6 @@
 package cop4331.client;
 
 import org.junit.jupiter.api.Test;
-
 import static org.junit.jupiter.api.Assertions.*;
 
 /**
@@ -10,18 +9,14 @@ import static org.junit.jupiter.api.Assertions.*;
 class StoreInfoTest
 {
 
-    @Test
-    void save()
-    {
-        System.out.println("Testing saving store info:");
-        Product prod = new Product(1, "Apple", 10, 2.35, 3.00);
-        StoreInfo.getInstance().buyProductForStore(prod, 5);
-
-    }
-
+    /*NOTE: There isn't a test for save() or load(), as these methods are called by every relevant mutating method
+    saves the store info after each change, so it isn't possible to have the store info NOT save in order to
+    have a control check against a saved store info
+    */
     @Test
     void buyProductForStore()
     {
+
     }
 
     @Test
