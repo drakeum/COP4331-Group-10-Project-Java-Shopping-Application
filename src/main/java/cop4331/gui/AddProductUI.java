@@ -48,6 +48,7 @@ public class AddProductUI extends JFrame {
     panel1.add(price);
     panel1.add(textFieldPrice);
     panel1.add(saveButton);
+    panel1.add(returnButton);
     this.setSize(800,1000);
     saveButton.addActionListener(new ActionListener(){
     @Override
