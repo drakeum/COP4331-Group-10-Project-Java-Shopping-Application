@@ -20,9 +20,9 @@ public class InventoryUI extends JFrame {
     private JButton cartButton = new JButton();
     private JButton homeButton = new JButton();
     private JButton addItemButton = new JButton();
+    private Inventory inv = Inventory.getInstance();
     
     public InventoryUI(Boolean userType){
-    Inventory inv = Inventory.getInstance();
     ImageIcon home = new ImageIcon(new ImageIcon("home.png").getImage().getScaledInstance(50, 50, Image.SCALE_DEFAULT));
     homeButton.setIcon(home);
     if(!userType)
@@ -35,7 +35,7 @@ public class InventoryUI extends JFrame {
      }
     });
     
-     this.setSize(800,1000);
+    this.setSize(800,1000);
     productList = inv.getProductList();
     this.setLayout(new BorderLayout());
     
