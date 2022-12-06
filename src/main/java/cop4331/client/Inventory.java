@@ -16,9 +16,9 @@ public class Inventory implements Serializable
     /**
      * Constructor for Inventory. The constructor is private because the class is a singleton
      */
-    private Inventory()
+    public Inventory()
     {
-
+        // made it public for testing, it needs to be made private again later.
     }
 
     /**
@@ -201,17 +201,18 @@ public class Inventory implements Serializable
         assert id >= 0 && quantity >= 0 && cost >= 0 && price >= 0 : "violated precondition id >= 0, quantity >= 0, cost >= 0, price >= 0";
         Product newProduct = new Product(id, name, 0, cost, price);
         productList.put(newProduct.getId(), newProduct);
-        StoreInfo.getInstance().buyProductForStore(newProduct, quantity);
-        newProduct.setQuantity(quantity);
-        try
-        {
-            save();
-        }
-        catch (IOException e)
-        {
-            System.out.println("IOException occurred");
-            throw new RuntimeException(e);
-        }
+        // removed for testing purposes with the UI.
+//        StoreInfo.getInstance().buyProductForStore(newProduct, newProduct.getQuantity());
+//        try
+//        {
+//            save();
+//        }
+//        catch (IOException e)
+//        {
+//            System.out.println("IOException occurred");
+//            throw new RuntimeException(e);
+//        }
+
     }
 
 
