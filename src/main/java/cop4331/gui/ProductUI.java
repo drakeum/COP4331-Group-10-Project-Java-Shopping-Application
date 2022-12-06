@@ -1,13 +1,9 @@
-package cop4331.client;
+package cop4331.gui;
 
-import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.FlowLayout;
-import java.awt.Font;
-import java.awt.GridLayout;
-import java.awt.Image;
-import java.awt.event.ActionListener;
+import cop4331.client.Product;
+
 import javax.swing.*;
+import java.awt.*;
 
 /**
  *

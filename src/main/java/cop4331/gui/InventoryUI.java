@@ -1,12 +1,12 @@
-package cop4331.client;
-import java.awt.BorderLayout;
-import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.GridLayout;
-import java.awt.Image;
+package cop4331.gui;
+
+import cop4331.client.Inventory;
+import cop4331.client.Product;
+
+import javax.swing.*;
+import java.awt.*;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
-import javax.swing.*;
 
 /**
  *

@@ -38,7 +38,6 @@ public class Cart
     {
         productList.add(prod);
         prod.setAmountToBeSold(1);
-        updateTotalPayment();
     }
 
     /**
@@ -60,7 +59,6 @@ public class Cart
 
             }
         }
-        updateTotalPayment();
     }
 
     /**
@@ -79,7 +77,6 @@ public class Cart
                 productList.remove(currentProd);
             }
         }
-        updateTotalPayment();
     }
 
     /**
@@ -116,6 +113,23 @@ public class Cart
     public double getTotalPayment()
     {
         return totalPayment;
+    }
+
+    /**
+     * Clears the cart of all items
+     */
+    public void emptyCart()
+    {
+        productList.clear();
+    }
+
+    /**
+     * Returns the amount of items in the cart
+     * @return the amount of items in the cart
+     */
+    public int size()
+    {
+        return productList.size();
     }
 
     /**
