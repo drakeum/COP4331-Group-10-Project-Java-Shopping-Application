@@ -1,4 +1,6 @@
-package cop4331.client;
+package cop4331.gui;
+import cop4331.client.LoginChecker;
+
 import javax.swing.*;
 import java.awt.*;
 
