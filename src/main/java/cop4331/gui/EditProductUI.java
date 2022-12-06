@@ -36,7 +36,7 @@ public class EditProductUI extends JFrame {
     JTextField textFieldQuantity = new JTextField(Integer.toString(p1.getQuantity()),10);
     JTextField textFieldCost = new JTextField(Double.toString(p1.getCost()),10);
     JTextField textFieldPrice = new JTextField(Double.toString(p1.getPrice()),10);
-    JTextField textFieldAmountToBeSold = new JTextField(10);
+    JTextField textFieldAmountToBeSold = new JTextField(Integer.toString(p1.getAmountToBeSold()),10);
     
     panel2.setPreferredSize(new Dimension(600, 600));
     panel2.add(panel1);

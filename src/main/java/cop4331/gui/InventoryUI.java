@@ -20,6 +20,7 @@ public class InventoryUI extends JFrame {
     private JButton cartButton = new JButton();
     private JButton homeButton = new JButton();
     private JButton addItemButton = new JButton();
+    private JButton storeInfoButton = new JButton();
     private Inventory inv = Inventory.getInstance();
     private JPanel pane = new JPanel();
     private ImageIcon home = new ImageIcon(new ImageIcon("home.png").getImage().getScaledInstance(50, 50, Image.SCALE_DEFAULT));
@@ -51,6 +52,9 @@ public class InventoryUI extends JFrame {
     cartButton.setBounds(30, 30, 30, 30);
     panel1.add(cartButton);
     } else {
+    ImageIcon storeInfo = new ImageIcon(new ImageIcon("storeInfo.png").getImage().getScaledInstance(50, 50, Image.SCALE_DEFAULT));
+    storeInfoButton.setIcon(storeInfo);
+    storeInfoButton.setBounds(30, 30, 30, 30);
     ImageIcon addItem = new ImageIcon(new ImageIcon("addItem.png").getImage().getScaledInstance(50, 50, Image.SCALE_DEFAULT));
     addItemButton.setIcon(addItem);
     addItemButton.setBounds(30, 30, 30, 30);
@@ -62,6 +66,7 @@ public class InventoryUI extends JFrame {
                 }
             });
      panel1.add(addItemButton);
+     panel1.add(storeInfoButton);
     }
 
     
