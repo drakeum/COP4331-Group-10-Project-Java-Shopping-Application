@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="COP4331-Group-10-Project-Java-Shopping-Application:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/COP4331_Group_10_Project_Java_Shopping_Application_jar</output-path>
+    <root id="archive" name="COP4331-Group-10-Project-Java-Shopping-Application.jar">
+      <element id="module-output" name="COP4331-Group-10-Project-Java-Shopping-Application" />
+    </root>
+  </artifact>
+</component>
