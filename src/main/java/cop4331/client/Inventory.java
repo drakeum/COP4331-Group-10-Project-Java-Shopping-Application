@@ -16,9 +16,9 @@ public class Inventory implements Serializable
     /**
      * Constructor for Inventory. The constructor is private because the class is a singleton
      */
-    private Inventory()
+    private Inventory() 
     {
-
+    
     }
 
     /**
