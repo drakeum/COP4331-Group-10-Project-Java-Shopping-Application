@@ -16,6 +16,6 @@ public class StoreTester
         Inventory.getInstance().addProduct(16, "house2", 20, 15, 80);
         Inventory.getInstance().addProduct(17, "house2", 20, 15, 80);
         Inventory.getInstance().addProduct(18, "house2", 20, 15, 80);
-        InventoryUI invUI = new InventoryUI(Inventory.getInstance(), false);
+        InventoryUI invUI = new InventoryUI(Inventory.getInstance(), true);
     }
 }
