@@ -1,4 +1,6 @@
-package cop4331.client;
+package cop4331.gui;
+import cop4331.client.LoginChecker;
+
 import javax.swing.*;
 import java.awt.*;
 
@@ -8,11 +10,7 @@ import java.awt.*;
  * Customer is able to log in
  */
 public class LoginUI extends JFrame {
-//    private static JLabel password1, label;
-//    private static JTextField username;
-//    private static JButton button;
-//    private static JPasswordField Password;
-    LoginUI(){
+    public LoginUI(){
         //this.setLayout(new FlowLayout());
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setTitle("Login");
@@ -43,17 +41,17 @@ public class LoginUI extends JFrame {
         JButton loginButton = new JButton("Login");
         loginButton.setBounds(100, 110, 90, 25);
         loginButton.addActionListener((e) -> {
-            System.out.println("Verifying credentials...");
+            LoginChecker loginChecker = new LoginChecker();
+
+            boolean loggedIn = loginChecker.verifyCredentials(username.getText(), password.getText());
 
             if(username.getText().equals("seller")){
-
+                //new InventoryUI(true);
             }
             else{
-
+                //new InventoryUI(false);
             }
-            boolean loggedIn = LoginChecker.verifyCustomerCredentials(username.getText(), password.getText());
-
-            System.out.println(loggedIn);
+            this.dispose();
         });
 
         loginFormPanel.add(loginButton);

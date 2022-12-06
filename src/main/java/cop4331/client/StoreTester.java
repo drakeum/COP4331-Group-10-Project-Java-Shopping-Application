@@ -1,6 +1,7 @@
 package cop4331.client;
 
 import cop4331.gui.InventoryUI;
+import cop4331.gui.LoginUI;
 
 /**
  * @author Hunter B, Tommy L
