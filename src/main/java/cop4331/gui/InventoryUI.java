@@ -5,6 +5,8 @@ import cop4331.client.Product;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 
@@ -12,7 +14,7 @@ import java.util.LinkedHashMap;
  *
  * @author Mark A.
  */
-public class InventoryUI extends JFrame {
+public class InventoryUI extends JFrame implements ActionListener {
     
     private LinkedHashMap<Integer, Product> productList = new LinkedHashMap<>();
     
@@ -20,10 +22,10 @@ public class InventoryUI extends JFrame {
     private JButton homeLabel = new JButton();
     private JButton addItemLabel = new JButton();
     
-    InventoryUI(Inventory inv, Boolean seller) {
+    public InventoryUI(Inventory inv, Boolean userType){
     ImageIcon home = new ImageIcon(new ImageIcon("home.png").getImage().getScaledInstance(50, 50, Image.SCALE_DEFAULT));
     homeLabel.setIcon(home);
-    if(!seller)
+    if(!userType)
     homeLabel.setBounds(30, 30, 30, 30);
     productList = inv.getProductList();
     this.setLayout(new BorderLayout());
@@ -31,7 +33,7 @@ public class InventoryUI extends JFrame {
     JPanel panel1 = new JPanel();
 
     panel1.add(homeLabel);
-    if(!seller){
+    if(!userType){
     ImageIcon cart = new ImageIcon(new ImageIcon("cart.png").getImage().getScaledInstance(50, 50, Image.SCALE_DEFAULT));
     cartLabel.setIcon(cart);
     cartLabel.setBounds(30, 30, 30, 30);
@@ -46,9 +48,9 @@ public class InventoryUI extends JFrame {
     
     ArrayList<JPanel> pUI = new ArrayList<>();
     productList.forEach((key, value) -> {
-        ProductUI p = new ProductUI(value, false, seller);
+        ProductUI p = new ProductUI(value, userType);
         JPanel tempPanel = p.getProductPanel();
-        if(seller){
+        if(userType){
             JButton editButton = new JButton("Edit");
             JButton removeButton = new JButton("Remove");
             editButton.setBounds(200, 100, 100, 50);
@@ -58,10 +60,23 @@ public class InventoryUI extends JFrame {
         } else {
             JButton addToCartButton = new JButton("Add");
             JButton viewDetailsButton = new JButton("View");
-            addToCartButton.setBounds(200, 100, 100, 50);
+            addToCartButton.addActionListener(new ActionListener(){
+                @Override
+                public void actionPerformed(ActionEvent e){
+                    System.out.println("the key: " + key);
+                }
+            });
+             addToCartButton.setBounds(200, 100, 100, 50);
             viewDetailsButton.setBounds(200, 100, 100, 50);
             tempPanel.add(addToCartButton);
             tempPanel.add(viewDetailsButton);
+             viewDetailsButton.addActionListener(new ActionListener(){
+                @Override
+                public void actionPerformed(ActionEvent e){
+                     ProductUI p1 = new ProductUI(value, userType);
+                     p1.viewFullProductDetails();
+                }
+            });
         }
         tempPanel.setBorder(BorderFactory.createLineBorder(Color.black));
         pUI.add(tempPanel);
@@ -76,6 +91,11 @@ public class InventoryUI extends JFrame {
     this.setVisible(true);
     this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);  
         
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
     
 }
