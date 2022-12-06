@@ -9,13 +9,16 @@ import java.awt.*;
  * Login user interface
  * Customer is able to log in
  */
-public class LoginUI extends JFrame {
+
+public class LoginUI extends JFrame{ 
+    
     public LoginUI(){
         //this.setLayout(new FlowLayout());
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setTitle("Login");
         this.setLocation(500, 100);
         this.setResizable(false);
+
         this.setSize(500,500);
 
         JPanel loginFormPanel = new JPanel();
@@ -40,6 +43,7 @@ public class LoginUI extends JFrame {
 
         JButton loginButton = new JButton("Login");
         loginButton.setBounds(100, 110, 90, 25);
+
         loginButton.addActionListener((e) -> {
             LoginChecker loginChecker = new LoginChecker();
 
@@ -52,6 +56,8 @@ public class LoginUI extends JFrame {
                 new InventoryUI(false);
             }
             this.dispose();
+
+        
         });
 
         loginFormPanel.add(loginButton);

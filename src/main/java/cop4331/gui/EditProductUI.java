@@ -19,18 +19,25 @@ public class EditProductUI extends JFrame {
     private JLabel quantity = new JLabel("Quantity: ");
     private JLabel cost = new JLabel("Cost: ");
     private JLabel price = new JLabel("Price: ");
+    private JLabel amountToBeSold = new JLabel("Amount to be sold: ");
+    private JPanel pane = new JPanel();
+    private Inventory inv = Inventory.getInstance();
+    private JPanel panel1 = new JPanel(new GridLayout(0, 2));
+    private JButton saveButton = new JButton("Save");
+    private JButton returnButton = new JButton("Return");
+    private JPanel panel2 = new JPanel();
+    private JButton confirmButton = new JButton("Confirm");
+    private JButton cancelButton = new JButton("Cancel");
+    
+    
     public EditProductUI(Product p1){
-    
     this.setLayout(new BorderLayout());
-    JPanel panel1 = new JPanel(new GridLayout(0, 2));
-    
-    JButton saveButton = new JButton("Save");
     JTextField textFieldName = new JTextField(p1.getName(),10);
     JTextField textFieldQuantity = new JTextField(Integer.toString(p1.getQuantity()),10);
     JTextField textFieldCost = new JTextField(Double.toString(p1.getCost()),10);
-    JTextField textFieldPrice = new JTextField(Double.toString(p1.getPrice()),10);  
- 
-    JPanel panel2 = new JPanel();
+    JTextField textFieldPrice = new JTextField(Double.toString(p1.getPrice()),10);
+    JTextField textFieldAmountToBeSold = new JTextField(Integer.toString(p1.getAmountToBeSold()),10);
+    
     panel2.setPreferredSize(new Dimension(600, 600));
     panel2.add(panel1);
     panel1.add(name);
@@ -41,20 +48,49 @@ public class EditProductUI extends JFrame {
     panel1.add(textFieldCost);
     panel1.add(price);
     panel1.add(textFieldPrice);
+    panel1.add(amountToBeSold);
+    panel1.add(textFieldAmountToBeSold);
     panel1.add(saveButton);
+    panel1.add(returnButton);
+    
     this.setSize(800,1000);
     saveButton.addActionListener(new ActionListener(){
     @Override
      public void actionPerformed(ActionEvent e){
-    
-       // boolean = confirmation ui
-       // if true then save the inventory class otherwise return to the inventory UI and dispose of the frame.
-       // save the items into the inventory class and dispose of the frame
-  
+       dispose();
+       ConfirmationUI confirmationUI = new ConfirmationUI();
+       pane = confirmationUI.getPanel();
+       
+       pane.add(confirmButton);
+       confirmButton.addActionListener(new ActionListener(){
+              @Override
+              public void actionPerformed(ActionEvent e){
+              inv.editProduct(p1.getId(),textFieldName.getText(),Integer.parseInt(textFieldQuantity.getText()),Double.parseDouble(textFieldCost.getText()),Double.parseDouble(textFieldPrice.getText()),Integer.parseInt(textFieldAmountToBeSold.getText()));
+              confirmationUI.dispose();
+              InventoryUI inv = new InventoryUI(true);
+           }
+         });
+       
+       pane.add(cancelButton);
+       cancelButton.addActionListener(new ActionListener(){
+            @Override
+            public void actionPerformed(ActionEvent e){
+            confirmationUI.dispose();
+            InventoryUI inv = new InventoryUI(true);
+           }    
+        });
+       
+     }
+    });
+    returnButton.addActionListener(new ActionListener(){
+    @Override
+     public void actionPerformed(ActionEvent e){
+      InventoryUI inv = new InventoryUI(true);
+      dispose();
      }
     });
 
-    
+    this.add(pane);
     this.add(panel2, BorderLayout.CENTER);
     this.setVisible(true);
     }

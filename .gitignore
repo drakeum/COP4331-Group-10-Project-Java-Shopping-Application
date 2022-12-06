@@ -11,6 +11,7 @@ target/
 *.iws
 *.iml
 *.ipr
+*/resources/META-INF/MANIFEST.MF
 
 ### Eclipse ###
 .apt_generated
