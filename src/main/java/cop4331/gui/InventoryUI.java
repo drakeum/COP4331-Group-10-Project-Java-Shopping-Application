@@ -85,9 +85,15 @@ public class InventoryUI extends JFrame implements ActionListener {
         panel2.add(pUI.get(i));
     }
     panel1.setPreferredSize(new Dimension(100,65));
+    JScrollPane scrollPane = new JScrollPane(panel2,20,30);  
+    scrollPane.setPreferredSize(new Dimension(200, 200));
+    scrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);  
+    scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);  
+    this.getContentPane().add(scrollPane);  
     panel1.setBackground(Color.blue);
+    this.add(scrollPane);
     this.add(panel1, BorderLayout.NORTH);
-    this.add(panel2, BorderLayout.CENTER);
+    this.add(scrollPane, BorderLayout.CENTER);
     this.setVisible(true);
     this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);  
         
