@@ -6,6 +6,8 @@ import javax.swing.*;
 /**
  *
  * @author Mark Altshuler
+ * basic layout for confirmation
+ * returns a panel that can be used by other classes
  */
 public class ConfirmationUI extends JFrame{
     

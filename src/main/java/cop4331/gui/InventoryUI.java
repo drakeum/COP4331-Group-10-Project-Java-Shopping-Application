@@ -1,5 +1,6 @@
 package cop4331.gui;
 
+import cop4331.client.Cart;
 import cop4331.client.Inventory;
 import cop4331.client.Product;
 
@@ -8,13 +9,16 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.LinkedHashMap;
 
 /**
  * @author Mark A.
+ * a store inventory interface for both the seller and user, depending on who is logged in. 
+ * If the seller is logged in then they can edit and remove items.
+ * Users can view items in detail and also add them to their cart.
  */
-public class InventoryUI extends JFrame
-{
+public class InventoryUI extends JFrame implements ActionListener {
 
     private LinkedHashMap<Integer, Product> productList = new LinkedHashMap<>();
 
@@ -28,9 +32,13 @@ public class InventoryUI extends JFrame
     private JButton editButton = new JButton("Edit");
     private JPanel panel1 = new JPanel();
     private JPanel panel2 = new JPanel(new GridLayout(0, 2, 50, 50));
+    private JComboBox comboBox;
+    private Boolean userAccess;
+    private String[] order = {"Name asc","Name dsc","Price asc","Price dsc"};
 
     public InventoryUI(Boolean userType)
     {
+        userAccess = userType;
         homeButton.setIcon(home);
         if (!userType)
             homeButton.setBounds(30, 30, 30, 30);
@@ -43,12 +51,24 @@ public class InventoryUI extends JFrame
                 dispose();
             }
         });
+        cartButton.addActionListener(new ActionListener()
+        {
+            @Override
+            public void actionPerformed(ActionEvent e)
+            {
+                CartUI cart = new CartUI();
+                dispose();
+            }
+        });
 
         this.setSize(800, 1000);
         productList = inv.getProductList();
         this.setLayout(new BorderLayout());
-
-
+ 
+        comboBox = new JComboBox(order);
+        comboBox.addActionListener(this);
+        
+        panel1.add(comboBox);
         panel1.add(homeButton);
         if (!userType)
         {
@@ -148,7 +168,13 @@ public class InventoryUI extends JFrame
                     @Override
                     public void actionPerformed(ActionEvent e)
                     {
-                        System.out.println("the key: " + key);
+                        Cart cart = Cart.getInstance();
+                        Boolean exists = checkCartForItem(value);
+                        if(!exists){
+                        System.out.println("added");
+                        cart.addItem(value);
+                        }
+                        System.out.println(cart.size());
                     }
                 });
                 addToCartButton.setBounds(200, 100, 100, 50);
@@ -188,5 +214,47 @@ public class InventoryUI extends JFrame
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
 
+     @Override
+ public void actionPerformed(ActionEvent e) {
+  if(e.getSource()==comboBox) {
+   String order = comboBox.getSelectedItem().toString();
+   switch(order) {
+  case "Name asc" -> {
+      inv.sortByNameAsc();
+          }
+  case "Name dsc" -> {
+      inv.sortByNameDesc();
+          }
+  case "Price asc" -> {
+      inv.sortByPriceAsc();
+          }
+  case "Price dsc" -> {
+      inv.sortByPriceDesc();
+          }
+  default -> {
+      break;
+          }
+}
+   dispose();
+   InventoryUI newUI = new InventoryUI(userAccess);
+  }
+ }
+ 
+ private Boolean checkCartForItem(Product value){
+   Cart cart = Cart.getInstance();
+   Iterator<Product> it = cart.getCartItems();
+   Boolean exists = false;
 
+   while(it.hasNext()) {
+          if(it.next().equals(value)){
+             System.out.println("already in the cart");
+              exists = true;
+              break;
+            }
+          if(it.hasNext()) {
+            it.next();
+           }
+      }
+   return exists;
+ }
 }

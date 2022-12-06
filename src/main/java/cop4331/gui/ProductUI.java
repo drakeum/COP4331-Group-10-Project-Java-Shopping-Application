@@ -22,9 +22,12 @@ public class ProductUI extends JFrame
     private JLabel icon = new JLabel();
     private Product p;
     JPanel insidePanel = new JPanel(new GridLayout(0, 1, 10, 10));
-
-    public ProductUI(Product p1, boolean seller)
-    {
+    /**
+     * Constructor for ProductUI
+     * @param p1 - a product
+     * @param seller - true for seller, false for customer 
+     */
+    public ProductUI(Product p1, boolean seller){
         ImageIcon image = new ImageIcon(new ImageIcon("icon.png").getImage().getScaledInstance(40, 40, Image.SCALE_DEFAULT));
         p = p1;
         icon.setHorizontalAlignment(JLabel.CENTER);
@@ -38,37 +41,43 @@ public class ProductUI extends JFrame
             getFullPanel();
         }
     }
-
-    public void viewFullProductDetails()
-    {
+    
+     /**
+     * adds the basic product information that is available both to the user and seller
+     */
+    public void viewFullProductDetails() {  
         getFullPanel();
         this.add(insidePanel);
         this.setVisible(true);
     }
 
-
-    private void getFullPanel()
-    {
-        id.setText(("id: " + Integer.toString(p.getId())));
-        id.setMinimumSize(new Dimension(30, 30));
-        id.setFont(new Font("MV Boli", Font.PLAIN, 35));
-        id.setBorder(BorderFactory.createLineBorder(Color.black));
-        id.setHorizontalAlignment(SwingConstants.CENTER);
-        quantity.setText(("Quantity: " + Integer.toString(p.getQuantity())));
-        quantity.setFont(new Font("MV Boli", Font.PLAIN, 35));
-        quantity.setBorder(BorderFactory.createLineBorder(Color.black));
-        quantity.setHorizontalAlignment(SwingConstants.CENTER);
-        cost.setFont(new Font("MV Boli", Font.PLAIN, 35));
-        cost.setText(("Cost: " + Double.toString(p.getCost()) + "$"));
-        cost.setBorder(BorderFactory.createLineBorder(Color.black));
-        cost.setHorizontalAlignment(SwingConstants.CENTER);
-        insidePanel.add(quantity);
-        insidePanel.add(cost);
-        insidePanel.add(id);
+     /**
+     * displays the hidden details associated with a product
+     */
+    private void getFullPanel() {  
+    id.setText(("id: " + Integer.toString(p.getId())));
+    id.setMinimumSize(new Dimension(30, 30));
+    id.setFont(new Font("MV Boli", Font.PLAIN,35));
+    id.setBorder(BorderFactory.createLineBorder(Color.black));
+    id.setHorizontalAlignment(SwingConstants.CENTER);
+    quantity.setText(("Quantity: " + Integer.toString(p.getQuantity())));
+    quantity.setFont(new Font("MV Boli", Font.PLAIN,35));
+    quantity.setBorder(BorderFactory.createLineBorder(Color.black));
+    quantity.setHorizontalAlignment(SwingConstants.CENTER);
+    cost.setFont(new Font("MV Boli", Font.PLAIN,35));
+    cost.setText(("Cost: " + Double.toString(p.getCost()) + "$"));
+    cost.setBorder(BorderFactory.createLineBorder(Color.black));
+    cost.setHorizontalAlignment(SwingConstants.CENTER);
+    insidePanel.add(quantity);
+    insidePanel.add(cost);
+    insidePanel.add(id);
     }
-
-    private void getUserPanel()
-    {
+    
+    
+    /**
+     * adds the basic product information that is available both to the user and seller
+     */
+    private void getUserPanel() {    
         name.setText(("Item: " + p.getName()));
         price.setText(("Price: " + Double.toString(p.getPrice()) + "$"));
         name.setFont(new Font("MV Boli", Font.PLAIN, 35));
@@ -80,10 +89,12 @@ public class ProductUI extends JFrame
         insidePanel.add(name);
         insidePanel.add(price);
     }
-
-    public JPanel getProductPanel()
-    {
-        return insidePanel;
+    
+    /**
+     * @return returns the instance of the UI panel
+     */
+    public JPanel getProductPanel() {    
+    return insidePanel;
     }
 
 
