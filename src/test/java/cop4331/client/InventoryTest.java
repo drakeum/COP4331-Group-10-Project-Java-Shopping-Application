@@ -12,6 +12,16 @@ import static org.junit.jupiter.api.Assertions.*;
  */
 class InventoryTest
 {
+    /*NOTE: There isn't a test for save() or load(), as these methods are called by every relevant mutating method
+    saves the inventory after each change, so it isn't possible to have the inventory NOT save in order to have a
+    control check against a saved inventory
+    */
+
+    /*NOTE 2: Testing with singleton classes is a little weird because if you run every test as a whole, then
+    the same singleton is used throughout and can mess with the results. However, if you run each test
+    individually, they work as they should. I have tried to make it so the tests work correctly regardless of how
+    they are run, so there is some code that is seemingly unnecessary
+    */
 
     @Test
     void sortByPriceAsc()
@@ -239,10 +249,7 @@ class InventoryTest
         assertArrayEquals(postSortKeySetArr, sortCheckKeySetArr);
     }
 
-    /*NOTE: There isn't a test for save() or load(), as these methods are called by every relevant mutating method
-    saves the inventory after each change, so it isn't possible to have the inventory NOT save in order to have a
-    control check against a saved inventory
-    */
+
     @Test
     void removeProduct()
     {
