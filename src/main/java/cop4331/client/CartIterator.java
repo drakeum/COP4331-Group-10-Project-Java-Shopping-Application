@@ -10,7 +10,7 @@ import java.util.Iterator;
 public class CartIterator implements Iterator<Product>
 {
     private int current = 0;
-    private ArrayList<Product> cartItems;
+    private final ArrayList<Product> cartItems;
 
     /**
      * Constructor for the iterator

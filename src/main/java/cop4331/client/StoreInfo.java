@@ -135,6 +135,16 @@ public class StoreInfo implements Serializable
     }
 
     /**
+     * Resets the store's sales information to 0 for each value
+     */
+    public void resetStoreInfo()
+    {
+        totalCosts = 0;
+        totalRevenue = 0;
+        totalProfits = 0;
+    }
+
+    /**
      * Getter method for the instance of the StoreInfo class
      * @return the instance of StoreInfo
      */

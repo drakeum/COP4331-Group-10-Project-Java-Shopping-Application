@@ -2,7 +2,6 @@ package cop4331.client;
 
 import org.junit.jupiter.api.Test;
 
-import java.io.IOException;
 import java.util.*;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -13,6 +12,16 @@ import static org.junit.jupiter.api.Assertions.*;
  */
 class InventoryTest
 {
+    /*NOTE: There isn't a test for save() or load(), as these methods are called by every relevant mutating method
+    saves the inventory after each change, so it isn't possible to have the inventory NOT save in order to have a
+    control check against a saved inventory
+    */
+
+    /*NOTE 2: Testing with singleton classes is a little weird because if you run every test as a whole, then
+    the same singleton is used throughout and can mess with the results. However, if you run each test
+    individually, they work as they should. I have tried to make it so the tests work correctly regardless of how
+    they are run, so there is some code that is seemingly unnecessary
+    */
 
     @Test
     void sortByPriceAsc()
@@ -240,51 +249,6 @@ class InventoryTest
         assertArrayEquals(postSortKeySetArr, sortCheckKeySetArr);
     }
 
-    //NOTE: There isn't a test for load(), as save() assumed load() works and also pretty much tests that it does as well
-
-    @Test
-    public void save()
-    {
-
-        System.out.println("Testing save");
-        //add example products to inventory
-        Inventory.getInstance().addProduct(1, "Apple", 10, 2.35, 3.00);
-        Inventory.getInstance().addProduct(2, "Orange", 15, 1.35, 2.00);
-        System.out.println("Current inventory size after adding two products: " + Inventory.getInstance().size());
-        //save the inventory through serialization
-        try
-        {
-            Inventory.getInstance().save();
-        } catch (IOException e)
-        {
-            System.out.println("IOException occurred");
-            throw new RuntimeException(e);
-        }
-
-        //remove a product from the inventory
-        Inventory.getInstance().removeProduct(1);
-        int removedSize = Inventory.getInstance().size();
-        System.out.println("Current inventory size after removing a product: " + Inventory.getInstance().size());
-
-        //load the inventory to test if the products were saved (removed product should show back up)
-        try
-        {
-            Inventory.getInstance().load();
-        } catch (IOException | ClassNotFoundException e)
-        {
-            System.out.println("IOException occurred");
-            throw new RuntimeException(e);
-        }
-
-        int loadedSize = Inventory.getInstance().size();
-        boolean productRemoved = removedSize == 1;
-        boolean productsSaved = loadedSize == 2;
-
-        //tests if a product was removed (needed to make sure size of inventory was 1 before it was loaded)
-        assertTrue(productRemoved);
-        //tests if inventory size was back to equaling 2 after load
-        assertTrue(productsSaved);
-    }
 
     @Test
     void removeProduct()
@@ -312,33 +276,7 @@ class InventoryTest
             System.out.println(entry.getKey() + " - " + entry.getValue().getName() + " - " + entry.getValue().getPrice());
         }
 
-        Set<Integer> removedCheckKeySet = Inventory.getInstance().getProductList().keySet();
-        Integer[] removedCheckKeySetArr = new Integer[5];
-        int i = 0;
-        for(Integer entry: removedCheckKeySet)
-        {
-            removedCheckKeySetArr[i++] = entry;
-        }
-
-
-        LinkedHashMap<Integer, Product> removeCheck = new LinkedHashMap<>();
-        Product prod = new Product(1, "Apple", 10, 2.35, 3.00);
-        removeCheck.put(prod.getId(), prod);
-        prod = new Product(2, "Orange", 15, 1.35, 2.00);
-        removeCheck.put(prod.getId(), prod);
-        prod = new Product(3, "Bunny", 1, 1.35, 200.00);
-        removeCheck.put(prod.getId(), prod);
-        prod = new Product(5, "Can", 1, 1.35, 0.5);
-        removeCheck.put(prod.getId(), prod);
-        Set<Integer> testCheckKeySet = removeCheck.keySet();
-        Integer[] testCheckKeySetArr = new Integer[5];
-        int j = 0;
-        for(Integer entry: testCheckKeySet)
-        {
-            testCheckKeySetArr[j++] = entry;
-        }
-
-        assertArrayEquals(removedCheckKeySetArr, testCheckKeySetArr);
+        assertFalse(Inventory.getInstance().getProductList().containsKey(4));
     }
 
     @Test
@@ -349,6 +287,7 @@ class InventoryTest
         Inventory.getInstance().addProduct(2, "Orange", 15, 1.35, 2.00);
         Inventory.getInstance().addProduct(3, "Bunny", 1, 1.35, 200.00);
         Inventory.getInstance().addProduct(5, "Can", 1, 1.35, 0.5);
+        Inventory.getInstance().removeProduct(4);
 
         System.out.println("Before item addition:");
         Set<Map.Entry<Integer, Product>> preRemove = Inventory.getInstance().getProductList().entrySet();
@@ -366,35 +305,7 @@ class InventoryTest
             System.out.println(entry.getKey() + " - " + entry.getValue().getName() + " - " + entry.getValue().getPrice());
         }
 
-        Set<Integer> addedCheckKeySet = Inventory.getInstance().getProductList().keySet();
-        Integer[] addedCheckKeySetArr = new Integer[5];
-        int i = 0;
-        for(Integer entry: addedCheckKeySet)
-        {
-            addedCheckKeySetArr[i++] = entry;
-        }
-
-
-        LinkedHashMap<Integer, Product> addCheck = new LinkedHashMap<>();
-        Product prod = new Product(1, "Apple", 10, 2.35, 3.00);
-        addCheck.put(prod.getId(), prod);
-        prod = new Product(2, "Orange", 15, 1.35, 2.00);
-        addCheck.put(prod.getId(), prod);
-        prod = new Product(3, "Bunny", 1, 1.35, 200.00);
-        addCheck.put(prod.getId(), prod);
-        prod = new Product(5, "Can", 1, 1.35, 0.5);
-        addCheck.put(prod.getId(), prod);
-        prod = new Product(4, "Pineapple", 5, 2.35, 2.40);
-        addCheck.put(prod.getId(), prod);
-        Set<Integer> testCheckKeySet = addCheck.keySet();
-        Integer[] testCheckKeySetArr = new Integer[5];
-        int j = 0;
-        for(Integer entry: testCheckKeySet)
-        {
-            testCheckKeySetArr[j++] = entry;
-        }
-
-        assertArrayEquals(addedCheckKeySetArr, testCheckKeySetArr);
+        assertTrue(Inventory.getInstance().getProductList().containsKey(4));
 
     }
 

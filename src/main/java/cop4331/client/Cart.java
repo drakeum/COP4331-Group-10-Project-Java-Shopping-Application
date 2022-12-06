@@ -45,11 +45,11 @@ public class Cart
      * Changes the amount of a product a customer has put in the cart
      * @param id the id of the product being sold
      * @param amountToBeSold the amount of the product the customer wants to buy
-     * @precondition amountToBeSold >= 1
+     * @precondition amountToBeSold >= 1 && amountToBeSold <= Inventory.getInstance().getProductList().get(id).getQuantity()
      */
     public void changeItemAmountToBeSold(int id, int amountToBeSold)
     {
-        assert amountToBeSold >= 1 : "violated precondition amountToBeSold >= 1";
+        assert amountToBeSold >= 1 && amountToBeSold <= Inventory.getInstance().getProductList().get(id).getQuantity(): "violated precondition amountToBeSold >= 1 && amountToBeSold <= Inventory.getInstance().getProductList().get(id).getQuantity()";
         Iterator<Product> iter = getCartItems();
         while(iter.hasNext())
         {
@@ -88,23 +88,28 @@ public class Cart
     public void confirmCart()
     {
         Iterator<Product> iter = getCartItems();
-        Product currProd = iter.next();
         while(iter.hasNext())
         {
+            Product currProd = iter.next();
             StoreInfo.getInstance().sellProduct(currProd, currProd.getAmountToBeSold());
         }
+        StoreInfo.getInstance().calculateProfits();
     }
 
     /**
-     * Updates the cart total the buyer will have to pay when they checkout
+     * Updates the cart total the buyer will have to pay when they check out
      */
     public void updateTotalPayment()
     {
         totalPayment = 0;
+        if(size() == 0)
+        {
+            return;
+        }
         Iterator<Product> iter = getCartItems();
-        Product currProd = iter.next();
         while(iter.hasNext())
         {
+            Product currProd = iter.next();
             totalPayment += (currProd.getPrice() * currProd.getAmountToBeSold());
         }
     }
@@ -116,6 +121,24 @@ public class Cart
     public double getTotalPayment()
     {
         return totalPayment;
+    }
+
+    /**
+     * Clears the cart of all items
+     */
+    public void emptyCart()
+    {
+        productList.clear();
+        updateTotalPayment();
+    }
+
+    /**
+     * Returns the amount of items in the cart
+     * @return the amount of items in the cart
+     */
+    public int size()
+    {
+        return productList.size();
     }
 
     /**
