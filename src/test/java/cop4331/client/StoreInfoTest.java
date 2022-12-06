@@ -16,6 +16,13 @@ class StoreInfoTest
     @Test
     void buyProductForStore()
     {
+        System.out.println("Testing buying more of a product for the store");
+        Inventory.getInstance().addProduct(1, "Apple", 10, 2.35, 3.00);
+        System.out.println("Current amount of apple in the store before buying more: " + Inventory.getInstance().getProductList().get(1).getQuantity());
+        System.out.println("Current store costs before buying more: " + StoreInfo.getInstance().getTotalCosts());
+        StoreInfo.getInstance().buyProductForStore(Inventory.getInstance().getProductList().get(1), 5);
+        System.out.println("Current amount of apple in the store after buying more: " + Inventory.getInstance().getProductList().get(1).getQuantity());
+        System.out.println("Current store costs after buying more: " + StoreInfo.getInstance().getTotalCosts());
 
     }
 

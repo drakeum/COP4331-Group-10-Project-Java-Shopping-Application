@@ -199,9 +199,10 @@ public class Inventory implements Serializable
     public void addProduct(int id, String name, int quantity, double cost, double price)
     {
         assert id >= 0 && quantity >= 0 && cost >= 0 && price >= 0 : "violated precondition id >= 0, quantity >= 0, cost >= 0, price >= 0";
-        Product newProduct = new Product(id, name, quantity, cost, price);
+        Product newProduct = new Product(id, name, 0, cost, price);
         productList.put(newProduct.getId(), newProduct);
-        StoreInfo.getInstance().buyProductForStore(newProduct, newProduct.getQuantity());
+        StoreInfo.getInstance().buyProductForStore(newProduct, quantity);
+        newProduct.setQuantity(quantity);
         try
         {
             save();
