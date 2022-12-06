@@ -46,10 +46,10 @@ public class LoginUI extends JFrame {
             boolean loggedIn = loginChecker.verifyCredentials(username.getText(), password.getText());
 
             if(username.getText().equals("seller")){
-                //new InventoryUI(true);
+                new InventoryUI(true);
             }
             else{
-                //new InventoryUI(false);
+                new InventoryUI(false);
             }
             this.dispose();
         });
