@@ -4,7 +4,7 @@ import cop4331.gui.InventoryUI;
 import cop4331.gui.LoginUI;
 
 /**
- * @author Hunter B, Tommy L
+ * @author Hunter B, Tommy L, Mark A
  */
 public class StoreTester
 {
@@ -19,8 +19,7 @@ public class StoreTester
         Inventory.getInstance().addProduct(17, "house2", 20, 15, 80);
         Inventory.getInstance().addProduct(18, "house2", 20, 15, 80);
         
-        new LoginUI();
-        InventoryUI invUI = new InventoryUI(Inventory.getInstance(), true);
-
+       // new LoginUI();
+        InventoryUI invUI = new InventoryUI(true);
     }
 }

@@ -64,8 +64,6 @@ public class ProductUI extends JFrame {
     }
     
     private void getUserPanel() {    
-        
-
         name.setText(("Item: " + p.getName()));
         price.setText(("Price: " + Double.toString(p.getPrice())+ "$"));     
         name.setFont(new Font("MV Boli", Font.PLAIN,35));
