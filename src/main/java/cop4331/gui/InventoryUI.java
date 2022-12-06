@@ -14,35 +14,44 @@ import java.util.LinkedHashMap;
  *
  * @author Mark A.
  */
-public class InventoryUI extends JFrame implements ActionListener {
+public class InventoryUI extends JFrame {
     
     private LinkedHashMap<Integer, Product> productList = new LinkedHashMap<>();
     
-    private JButton cartLabel = new JButton();
-    private JButton homeLabel = new JButton();
-    private JButton addItemLabel = new JButton();
+    private JButton cartButton = new JButton();
+    private JButton homeButton = new JButton();
+    private JButton addItemButton = new JButton();
     
     public InventoryUI(Inventory inv, Boolean userType){
     ImageIcon home = new ImageIcon(new ImageIcon("home.png").getImage().getScaledInstance(50, 50, Image.SCALE_DEFAULT));
-    homeLabel.setIcon(home);
+    homeButton.setIcon(home);
     if(!userType)
-    homeLabel.setBounds(30, 30, 30, 30);
+    homeButton.setBounds(30, 30, 30, 30);
+    homeButton.addActionListener(new ActionListener(){
+    @Override
+     public void actionPerformed(ActionEvent e){
+       InventoryUI homePage = new InventoryUI(inv, userType);
+       dispose();
+     }
+    });
+    
+     this.setSize(800,1000);
     productList = inv.getProductList();
     this.setLayout(new BorderLayout());
     
     JPanel panel1 = new JPanel();
 
-    panel1.add(homeLabel);
+    panel1.add(homeButton);
     if(!userType){
     ImageIcon cart = new ImageIcon(new ImageIcon("cart.png").getImage().getScaledInstance(50, 50, Image.SCALE_DEFAULT));
-    cartLabel.setIcon(cart);
-    cartLabel.setBounds(30, 30, 30, 30);
-    panel1.add(cartLabel);
+    cartButton.setIcon(cart);
+    cartButton.setBounds(30, 30, 30, 30);
+    panel1.add(cartButton);
     } else {
     ImageIcon addItem = new ImageIcon(new ImageIcon("addItem.png").getImage().getScaledInstance(50, 50, Image.SCALE_DEFAULT));
-    addItemLabel.setIcon(addItem);
-    addItemLabel.setBounds(30, 30, 30, 30);
-     panel1.add(addItemLabel);
+    addItemButton.setIcon(addItem);
+    addItemButton.setBounds(30, 30, 30, 30);
+     panel1.add(addItemButton);
     }
     JPanel panel2 = new JPanel(new GridLayout(0, 2, 50, 50));
     
@@ -99,9 +108,5 @@ public class InventoryUI extends JFrame implements ActionListener {
         
     }
 
-    @Override
-    public void actionPerformed(ActionEvent e) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
     
 }
