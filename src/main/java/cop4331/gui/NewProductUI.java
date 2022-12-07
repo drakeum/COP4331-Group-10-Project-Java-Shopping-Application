@@ -12,6 +12,7 @@ import javax.swing.*;
 /**
  *
  * @author Mark A.
+ * interface for the seller to add items
  */
 public class NewProductUI extends JFrame {
     private JLabel id = new JLabel("id: ");
@@ -66,7 +67,6 @@ public class NewProductUI extends JFrame {
      }
     });
 
-    
     this.add(panel2, BorderLayout.CENTER);
     this.setVisible(true);
     }

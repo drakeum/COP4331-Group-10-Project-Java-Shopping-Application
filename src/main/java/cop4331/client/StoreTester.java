@@ -24,5 +24,7 @@ public class StoreTester
 
         new CartUI();
         //new LoginUI();
+        //InventoryUI ui1 = new InventoryUI(false);
+
     }
 }
