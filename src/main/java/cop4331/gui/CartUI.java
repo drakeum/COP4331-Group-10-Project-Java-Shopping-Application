@@ -64,13 +64,27 @@ public class CartUI extends JFrame {
                 quantity.addActionListener(new ActionListener() {
                     @Override
                     public void actionPerformed(ActionEvent e) {
-                        cart.changeItemAmountToBeSold(product.getId(), Integer.parseInt(quantity.getText().trim()));
-                        System.out.println("amount to be sold changed to: " + quantity.getText().trim());
-                        totalPrice.setText("Total Price: $" + String.format("%.2f", cart.getTotalPayment()));
+                        /**
+                         * @author Tommy L., Hunter B
+                         */
+                        if(Integer.parseInt(quantity.getText().trim()) > product.getQuantity())
+                        {
+                            System.out.println("Can't sell this much of the item, not enough in stock");
+                            quantity.setText(String.valueOf(product.getQuantity()));
+                        }
+                        else
+                        {
+                            cart.changeItemAmountToBeSold(product.getId(), Integer.parseInt(quantity.getText().trim()));
+                            System.out.println("amount to be sold changed to: " + quantity.getText().trim());
+                            totalPrice.setText("Total Price: $" + String.format("%.2f", cart.getTotalPayment()));
+                        }
+
                     }
                 }
                 );
-
+                /**
+                 * @author Tommy L.
+                 */
                 JLabel productLabel = new JLabel(product.getName() + " - $" + product.getPrice());
                 productLabel.setBounds(55,5,100, 20);
 

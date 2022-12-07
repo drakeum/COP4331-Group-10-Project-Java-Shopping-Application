@@ -3,6 +3,7 @@ package cop4331.gui;
 import cop4331.client.Cart;
 import cop4331.client.Inventory;
 import cop4331.client.Product;
+import cop4331.client.StoreInfo;
 
 import javax.swing.*;
 import java.awt.*;
@@ -42,16 +43,45 @@ public class InventoryUI extends JFrame implements ActionListener
 
     public InventoryUI(Boolean userType)
     {
+        /**
+         * @author Hunter B.
+         */
         try
         {
             Inventory.getInstance().load();
-        } catch (IOException e)
+        } catch (IOException | ClassNotFoundException e)
         {
-            throw new RuntimeException(e);
-        } catch (ClassNotFoundException e)
-        {
-            throw new RuntimeException(e);
+            try
+            {
+                Inventory.getInstance().save();
+            } catch (IOException e2)
+            {
+                System.out.println("IOException occurred");
+                throw new RuntimeException(e);
+            }
         }
+        try
+        {
+            StoreInfo.getInstance().load();
+        } catch (IOException | ClassNotFoundException e)
+        {
+            try
+            {
+                StoreInfo.getInstance().save();
+            } catch (IOException e2)
+            {
+                System.out.println("IOException occurred");
+                throw new RuntimeException(e);
+            }
+        }
+        System.out.println("Current store stats: ");
+        System.out.println("Costs: " + StoreInfo.getInstance().getTotalCosts());
+        System.out.println("Revenues: " + StoreInfo.getInstance().getTotalRevenue());
+        StoreInfo.getInstance().calculateProfits();
+        System.out.println("Profits: " + StoreInfo.getInstance().getTotalProfits());
+        /**
+         * @author Mark A.
+         */
         inv = Inventory.getInstance();
         userAccess = userType;
         homeButton.setIcon(home);

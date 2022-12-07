@@ -2,6 +2,7 @@ package cop4331.gui;
 
 import cop4331.client.Inventory;
 import cop4331.client.Product;
+import cop4331.client.StoreInfo;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
@@ -20,7 +21,6 @@ public class EditProductUI extends JFrame
     private JLabel quantity = new JLabel("Quantity: ");
     private JLabel cost = new JLabel("Cost: ");
     private JLabel price = new JLabel("Price: ");
-    private JLabel amountToBeSold = new JLabel("Amount to be sold: ");
     private JPanel pane = new JPanel();
     private Inventory inv = Inventory.getInstance();
     private JPanel panel1 = new JPanel(new GridLayout(0, 2));
@@ -41,7 +41,6 @@ public class EditProductUI extends JFrame
         JTextField textFieldQuantity = new JTextField(Integer.toString(p1.getQuantity()), 10);
         JTextField textFieldCost = new JTextField(Double.toString(p1.getCost()), 10);
         JTextField textFieldPrice = new JTextField(Double.toString(p1.getPrice()), 10);
-        JTextField textFieldAmountToBeSold = new JTextField(Integer.toString(p1.getAmountToBeSold()), 10);
 
         panel2.setPreferredSize(new Dimension(600, 600));
         panel2.add(panel1);
@@ -53,8 +52,6 @@ public class EditProductUI extends JFrame
         panel1.add(textFieldCost);
         panel1.add(price);
         panel1.add(textFieldPrice);
-        panel1.add(amountToBeSold);
-        panel1.add(textFieldAmountToBeSold);
         panel1.add(saveButton);
         panel1.add(returnButton);
 
@@ -75,12 +72,27 @@ public class EditProductUI extends JFrame
                     @Override
                     public void actionPerformed(ActionEvent e)
                     {
-                        inv.editProduct(p1.getId(), textFieldName.getText(), Integer.parseInt(textFieldQuantity.getText()), Double.parseDouble(textFieldCost.getText()), Double.parseDouble(textFieldPrice.getText()), Integer.parseInt(textFieldAmountToBeSold.getText()));
+                        /**
+                         * @author Mark A, Hunter B.
+                         */
+                        int prevQuant = p1.getQuantity();
+                        inv.editProduct(p1.getId(), textFieldName.getText(), Integer.parseInt(textFieldQuantity.getText()), Double.parseDouble(textFieldCost.getText()), Double.parseDouble(textFieldPrice.getText()), 0);
+                        if(prevQuant < Integer.parseInt(textFieldQuantity.getText()))
+                        {
+                            StoreInfo.getInstance().buyProductForStore(p1, Integer.parseInt(textFieldQuantity.getText()) - prevQuant);
+                        }
+                        System.out.println("Current store stats: ");
+                        System.out.println("Costs: " + StoreInfo.getInstance().getTotalCosts());
+                        System.out.println("Revenues: " + StoreInfo.getInstance().getTotalRevenue());
+                        StoreInfo.getInstance().calculateProfits();
+                        System.out.println("Profits: " + StoreInfo.getInstance().getTotalProfits());
                         confirmationUI.dispose();
                         new InventoryUI(true);
                     }
                 });
-
+                /**
+                 * @author Mark A.
+                 */
                 pane.add(cancelButton);
                 cancelButton.addActionListener(new ActionListener()
                 {

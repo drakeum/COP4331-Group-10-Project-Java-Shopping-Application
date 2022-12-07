@@ -37,7 +37,14 @@ public class Cart
     public void addItem(Product prod)
     {
         productList.add(prod);
-        prod.setAmountToBeSold(1);
+        if(prod.getQuantity() > 0)
+        {
+            prod.setAmountToBeSold(1);
+        }
+        else
+        {
+            prod.setAmountToBeSold(0);
+        }
         updateTotalPayment();
     }
 
