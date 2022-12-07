@@ -2,7 +2,6 @@ package cop4331.gui;
 
 import cop4331.client.Inventory;
 import cop4331.client.Product;
-import cop4331.gui.InventoryUI;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.GridLayout;
@@ -32,7 +31,10 @@ public class EditProductUI extends JFrame {
     
     
     public EditProductUI(Product p1){
+        
     this.setLayout(new BorderLayout());
+    this.setSize(800,1000);
+    
     JTextField textFieldName = new JTextField(p1.getName(),10);
     JTextField textFieldQuantity = new JTextField(Integer.toString(p1.getQuantity()),10);
     JTextField textFieldCost = new JTextField(Double.toString(p1.getCost()),10);
@@ -54,10 +56,11 @@ public class EditProductUI extends JFrame {
     panel1.add(saveButton);
     panel1.add(returnButton);
     
-    this.setSize(800,1000);
+    
     saveButton.addActionListener(new ActionListener(){
     @Override
      public void actionPerformed(ActionEvent e){
+         
        dispose();
        ConfirmationUI confirmationUI = new ConfirmationUI();
        pane = confirmationUI.getPanel();
@@ -83,6 +86,7 @@ public class EditProductUI extends JFrame {
        
      }
     });
+    
     returnButton.addActionListener(new ActionListener(){
     @Override
      public void actionPerformed(ActionEvent e){

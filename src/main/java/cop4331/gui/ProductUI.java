@@ -10,6 +10,7 @@ import java.awt.event.ActionListener;
 
 /**
  * @author Mark A.
+ * UI for the product
  */
 public class ProductUI extends JFrame
 {
@@ -46,7 +47,7 @@ public class ProductUI extends JFrame
     }
     
      /**
-     * adds the basic product information that is available both to the user and seller
+     * adds the full product information that is available both to the user and seller
      */
     public void viewFullProductDetails() {  
         

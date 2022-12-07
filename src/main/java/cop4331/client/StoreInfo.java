@@ -148,7 +148,6 @@ public class StoreInfo implements Serializable
      * Getter method for the instance of the StoreInfo class
      * @return the instance of StoreInfo
      */
-
     public static StoreInfo getInstance()
     {
         return instance;
