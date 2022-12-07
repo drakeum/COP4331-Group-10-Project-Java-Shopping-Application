@@ -12,7 +12,7 @@ import javax.swing.*;
 public class ConfirmationUI extends JFrame{
     
  private JPanel insidePanel = new JPanel();
- private JLabel text = new JLabel("Please confirm or cancel your chances");
+ private JLabel text = new JLabel("Please confirm or cancel your changes");
  private JPanel panel1 = new JPanel(new GridLayout(0, 2));
  
     public ConfirmationUI(){
