@@ -7,10 +7,18 @@ import java.awt.*;
 import java.util.concurrent.TimeUnit;
 
 /**
+ * Payment User Interface
+ * Simulates a payment by card
  * @author Tommy Las
  */
 public class PaymentUI extends JFrame
 {
+    /**
+     * PaymentUI Constructor
+     * Sets up the JFrame with each of its components
+     * @param totalPrice amount needed to be paid
+     * @author Tommy Las
+     */
     public PaymentUI(double totalPrice)
     {
 
@@ -27,14 +35,15 @@ public class PaymentUI extends JFrame
 
         JPanel formPanel = new JPanel(new GridLayout(4, 1));
 
+        //Name label & textfield
         JLabel nameLabel = new JLabel("Full Name: ");
-
         formPanel.add(nameLabel);
 
         JTextField fullName = new JTextField();
         fullName.setPreferredSize(new Dimension(150, 20));
         formPanel.add(fullName);
 
+        //Card number label & textfield
         JLabel cardNumber = new JLabel("Card Number: ");
         formPanel.add(cardNumber);
 
@@ -42,6 +51,7 @@ public class PaymentUI extends JFrame
         card.setPreferredSize(new Dimension(150, 20));
         formPanel.add(card);
 
+        //Expiration date label & textfield
         JLabel expDateLabel = new JLabel("Expiration Date: ");
         formPanel.add(expDateLabel);
 
@@ -49,7 +59,8 @@ public class PaymentUI extends JFrame
         expDate.setPreferredSize(new Dimension(150, 20));
         formPanel.add(expDate);
 
-        JLabel secLabel = new JLabel("Security Number: ");
+        //CCV label & textfield
+        JLabel secLabel = new JLabel("CCV: ");
         formPanel.add(secLabel);
 
         JTextField securityNumber = new JTextField();
@@ -60,8 +71,14 @@ public class PaymentUI extends JFrame
         JPanel footerPanel = new JPanel(new GridLayout(3, 1));
 
         JButton pay = new JButton("Pay");
+        /**
+         * Action listener that simulates the payment with card
+         * Pop-up window with success message is displayed
+         * @author Tommy Las
+         */
         pay.addActionListener(e ->
         {
+            //create a delay to simulate a processing of the card
             try
             {
                 Thread.sleep(2000);
@@ -70,11 +87,16 @@ public class PaymentUI extends JFrame
                 throw new RuntimeException(ex);
             }
             Cart.getInstance().confirmCart();
+            //payment successful, show pop-up message
             JOptionPane.showMessageDialog(null, "Payment Successful!", "Success", JOptionPane.INFORMATION_MESSAGE);
             this.dispose();
         });
 
         JButton cancel = new JButton("Cancel");
+        /**
+         * ActionListener to cancel payment and return to cart
+         * @author Tommy Las
+         */
         cancel.addActionListener(e ->
         {
             new InventoryUI(false);

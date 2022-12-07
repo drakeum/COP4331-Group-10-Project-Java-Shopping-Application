@@ -8,12 +8,16 @@ import java.awt.*;
 /**
  * @author Tommy Las
  * Login user interface
- * Customer is able to log in
+ * Customer or Seller is able to log in
  */
 
 public class LoginUI extends JFrame
 {
-
+    /**
+     * LoginUI Constructor
+     * Sets up the JFrame with each of its components
+     * @author Tommy Las
+     */
     public LoginUI()
     {
         //this.setLayout(new FlowLayout());
@@ -24,6 +28,7 @@ public class LoginUI extends JFrame
 
         this.setSize(500, 500);
 
+        //Label and texfield for username
         JPanel loginFormPanel = new JPanel();
         loginFormPanel.setLayout(null);
 
@@ -31,6 +36,7 @@ public class LoginUI extends JFrame
         usernameLabel.setBounds(100, 8, 70, 20);
         loginFormPanel.add(usernameLabel);
 
+        //Label and textfield for password
         JTextField username = new JTextField();
         username.setBounds(100, 27, 193, 28);
         loginFormPanel.add(username);
@@ -44,13 +50,19 @@ public class LoginUI extends JFrame
         loginFormPanel.add(password);
 
 
+        //Login button
         JButton loginButton = new JButton("Login");
         loginButton.setBounds(100, 110, 90, 25);
 
+        /**
+         * Button action listener that verify whether the credentials are ok and login the customer or seller
+         * @author Tommy Las
+         */
         loginButton.addActionListener((e) ->
         {
             LoginChecker loginChecker = new LoginChecker();
 
+            //verify credentials
             boolean loggedIn = loginChecker.verifyCredentials(username.getText(), password.getText());
 
             if (loggedIn == false)
@@ -60,9 +72,11 @@ public class LoginUI extends JFrame
             {
                 if (username.getText().equals("seller"))
                 {
+                    //if username is seller, then display the inventory for seller
                     new InventoryUI(true);
                 } else
                 {
+                    //display the inventory for customer
                     new InventoryUI(false);
                 }
                 this.dispose();

@@ -11,10 +11,19 @@ import java.awt.event.ActionListener;
 import java.util.Iterator;
 
 /**
- * @author Tommy Las 
+ * Cart user interface
+ * Displays all items in the cart
+ * Allows user to update the quantity of each product, and also remove it
+ * @author Tommy Las
  */
 public class CartUI extends JFrame {
     private Cart cart = Cart.getInstance();
+
+    /**
+     * CartUI constructor
+     * Sets up the JFrame with each of its components
+     * @author Tommy Las
+     */
     public CartUI() {
         this.setLayout(new FlowLayout(FlowLayout.LEFT));
         this.setTitle("Cart");
@@ -23,9 +32,13 @@ public class CartUI extends JFrame {
         this.setSize(400,650);
 
         JLabel title = new JLabel();
-        
+
+        //Button with its action listener to return to inventory page
         JButton returnButton = new JButton("Return");
-        
+        /**
+         * Action listener that returns to inventory page
+         * @author Mark
+         */
         returnButton.addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
@@ -36,6 +49,8 @@ public class CartUI extends JFrame {
          );
 
         JPanel cartProducts = new JPanel(new GridLayout(cart.size(), 1));
+
+        //cart is empty, so display return button
         if(cart.size() < 1){
             title.setText("Cart is Empty!");
             title.setFont(new Font("Calibri", Font.BOLD, 20));
@@ -49,11 +64,14 @@ public class CartUI extends JFrame {
 
             JLabel totalPrice = new JLabel("Total Price: $" + String.format("%.2f", cart.getTotalPayment()));
 
+            //Iterator Pattern: iterate products in cart
             Iterator cartIterator = cart.getCartItems();
 
+            //iterate through each product in the cart, and display it in the CartUI
             while(cartIterator.hasNext()){
                 Product product = (Product) cartIterator.next();
 
+                //Panel that will contain the textfield for quantity, label with product price and name, and remove button
                 JPanel productPanel = new JPanel(null);
                 productPanel.setPreferredSize(new Dimension(390, 30));
                 productPanel.setBorder(BorderFactory.createLineBorder(Color.black));
@@ -61,11 +79,13 @@ public class CartUI extends JFrame {
 
                 JTextField quantity = new JTextField(String.valueOf(product.getAmountToBeSold()));
                 quantity.setBounds(5,5,40, 20);
+
                 quantity.addActionListener(new ActionListener() {
                     @Override
                     public void actionPerformed(ActionEvent e) {
                         /**
-                         * @author Tommy L., Hunter B
+                         * Verifies if the quantity can be modified or not
+                         * @author Tommy L, Hunter B
                          */
                         if(Integer.parseInt(quantity.getText().trim()) > product.getQuantity())
                         {
@@ -94,10 +114,15 @@ public class CartUI extends JFrame {
                 removeButton.setBounds(360, 5, 17, 17);
                 removeButton.setBackground(Color.red);
 
+                /**
+                 * Action listener that removes a product from the cart and updates CartUI
+                 * @author Tommy Las
+                 */
                 //remove item from cart & update cart
                 removeButton.addActionListener((e) -> {
                     int confirm = JOptionPane.showOptionDialog(null, "Are you sure you want to remove this item?", "Confirmation", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, null, 0);
-                    
+
+                    //item removed, update the cart
                     if(confirm == 0){
                         cart.removeItem(product.getId());
                         new CartUI();
