@@ -12,6 +12,9 @@ public class LoginChecker {
         loginInformation.put("seller", "1234");
     }
     public boolean verifyCredentials(String username, String password){
+        if(loginInformation.get(username) == null){
+            return false;
+        }
         return (loginInformation.get(username).equals(password));
     }
 

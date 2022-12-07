@@ -49,13 +49,19 @@ public class LoginUI extends JFrame{
 
             boolean loggedIn = loginChecker.verifyCredentials(username.getText(), password.getText());
 
-            if(username.getText().equals("seller")){
-                new InventoryUI(true);
+            if(loggedIn == false){
+                JOptionPane.showMessageDialog(null, "Username or Password is incorrect", "Cannot Login", JOptionPane.ERROR_MESSAGE);
             }
             else{
-                new InventoryUI(false);
+                if(username.getText().equals("seller")){
+                    new InventoryUI(true);
+                }
+                else{
+                    new InventoryUI(false);
+                }
+                this.dispose();
             }
-            this.dispose();
+
 
         
         });

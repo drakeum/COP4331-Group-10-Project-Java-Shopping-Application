@@ -3,6 +3,9 @@ package cop4331.client;
 import cop4331.gui.CartUI;
 import cop4331.gui.InventoryUI;
 import cop4331.gui.LoginUI;
+import cop4331.gui.PaymentUI;
+
+import javax.swing.*;
 
 /**
  * @author Hunter B, Tommy L, Mark A
@@ -22,7 +25,6 @@ public class StoreTester
         inventory.addProduct(17, "house2", 20, 15, 80);
         inventory.addProduct(18, "house2", 20, 15, 80);
 
-        new CartUI();
-        //new LoginUI();
+        new LoginUI();
     }
 }
