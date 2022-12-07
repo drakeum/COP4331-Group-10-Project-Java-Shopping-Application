@@ -77,6 +77,7 @@ public class PaymentUI extends JFrame
         JButton cancel = new JButton("Cancel");
         cancel.addActionListener(e ->
         {
+            new InventoryUI(false);
             this.dispose();
         });
 
