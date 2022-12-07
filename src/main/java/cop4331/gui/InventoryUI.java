@@ -234,7 +234,6 @@ public class InventoryUI extends JFrame implements ActionListener {
         this.add(pane);
         panel1.setBackground(Color.blue);
         this.add(scrollPane);
-        this.add(panel3);
         this.add(panel1, BorderLayout.NORTH);
         this.add(scrollPane, BorderLayout.CENTER);
         this.setVisible(true);
