@@ -59,7 +59,7 @@ public class CartUI extends JFrame {
                 productPanel.setBorder(BorderFactory.createLineBorder(Color.black));
                 productPanel.setBackground(new Color(210, 210, 210));
 
-                JTextField quantity = new JTextField(String.valueOf(product.getQuantity()));
+                JTextField quantity = new JTextField(String.valueOf(product.getAmountToBeSold()));
                 quantity.setBounds(5,5,40, 20);
                 quantity.addActionListener(new ActionListener() {
                     @Override
@@ -99,6 +99,10 @@ public class CartUI extends JFrame {
             }
 
             JButton payButton = new JButton("Pay");
+            payButton.addActionListener(e->{
+                new PaymentUI(cart.getTotalPayment());
+                this.dispose();
+            });
 
             this.add(cartProducts);
             this.add(totalPrice);
