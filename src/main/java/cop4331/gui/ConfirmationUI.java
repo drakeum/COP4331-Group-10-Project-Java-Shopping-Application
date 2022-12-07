@@ -16,12 +16,16 @@ public class ConfirmationUI extends JFrame{
  private JPanel panel1 = new JPanel(new GridLayout(0, 2));
  
     public ConfirmationUI(){
+        
         this.setSize(600,600);
+        
         text.setVerticalAlignment(JLabel.CENTER);
         text.setHorizontalAlignment(JLabel.CENTER);
+        
         insidePanel.setBounds(0,0,500,500);
         insidePanel.add(text);
         insidePanel.add(panel1);
+        
         this.add(insidePanel);
         this.setVisible(true);
     }

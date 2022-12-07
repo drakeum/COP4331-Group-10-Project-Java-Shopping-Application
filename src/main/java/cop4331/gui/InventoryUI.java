@@ -214,42 +214,44 @@ public class InventoryUI extends JFrame implements ActionListener {
     }
 
      @Override
- public void actionPerformed(ActionEvent e) {
-  if(e.getSource()==comboBox) {
-   switch(comboBox.getSelectedItem().toString()) {
-  case "Name asc" -> {
-      inv.sortByNameAsc();
+    public void actionPerformed(ActionEvent e) {
+        if(e.getSource()==comboBox) {
+    switch(comboBox.getSelectedItem().toString()) {
+        case "Name asc" -> {
+            inv.sortByNameAsc();
           }
-  case "Name dsc" -> {
-      inv.sortByNameDesc();
+        case "Name dsc" -> {
+            inv.sortByNameDesc();
           }
-  case "Price asc" -> {
-      inv.sortByPriceAsc();
+        case "Price asc" -> {
+            inv.sortByPriceAsc();
           }
-  case "Price dsc" -> {
-      inv.sortByPriceDesc();
+        case "Price dsc" -> {
+            inv.sortByPriceDesc();
           }
-  default -> {
+        default -> {
       break;
           }
-}
+    }
    dispose();
    new InventoryUI(userAccess);
   }
  }
  
- private Boolean checkCartForItem(Product value){
-   Iterator<Product> it = cart.getCartItems();
-   Boolean exists = false;
-
-   while(it.hasNext()) {
-       System.out.println(value);
-       System.out.println(it);
-          if(it.next().equals(value)){
-              exists = true;
-              break;
+    /**
+    * checks to see if the item is already in the cart
+    * @return if the item is in the cart or not
+    */
+    private Boolean checkCartForItem(Product value){
+     
+        Iterator<Product> it = cart.getCartItems();
+   
+        while(it.hasNext()) {
+            if(it.next().equals(value)){
+                return true;
             }
-      }
-   return exists;
- }
+        }
+    return false;
+    }
+ 
 }
