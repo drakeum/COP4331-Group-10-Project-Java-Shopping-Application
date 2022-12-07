@@ -319,7 +319,7 @@ public class InventoryUI extends JFrame implements ActionListener
 
         while (it.hasNext())
         {
-            if (it.next().equals(value))
+            if (it.next().getId() == value.getId())
             {
                 return true;
             }
