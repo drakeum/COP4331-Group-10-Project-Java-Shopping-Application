@@ -1,5 +1,7 @@
 package cop4331.gui;
 
+import cop4331.client.Cart;
+
 import javax.swing.*;
 import java.awt.*;
 import java.util.concurrent.TimeUnit;
@@ -67,7 +69,7 @@ public class PaymentUI extends JFrame
             {
                 throw new RuntimeException(ex);
             }
-
+            Cart.getInstance().confirmCart();
             JOptionPane.showMessageDialog(null, "Payment Successful!", "Success", JOptionPane.INFORMATION_MESSAGE);
             this.dispose();
         });
