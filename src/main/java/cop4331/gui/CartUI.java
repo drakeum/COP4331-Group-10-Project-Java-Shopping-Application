@@ -30,6 +30,7 @@ public class CartUI extends JFrame {
                 @Override
                 public void actionPerformed(ActionEvent e) {
                   new InventoryUI(false); 
+                  dispose();
                }
             }
          );
