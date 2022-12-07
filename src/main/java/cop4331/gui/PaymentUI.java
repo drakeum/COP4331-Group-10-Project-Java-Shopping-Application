@@ -2,7 +2,6 @@ package cop4331.gui;
 import javax.swing.*;
 import java.awt.*;
 
-
 /**
  * @author Tommy Las
  */
