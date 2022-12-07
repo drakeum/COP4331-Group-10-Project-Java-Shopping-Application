@@ -75,6 +75,7 @@ public class CartUI extends JFrame {
                 productLabel.setBounds(55,5,100, 20);
 
                 JButton removeButton = new JButton("x");
+                removeButton.setMargin(new Insets(0, 0, 0, 0));
                 //removeButton.setForeground(Color.white);
                 removeButton.setBounds(360, 5, 17, 17);
                 removeButton.setBackground(Color.red);

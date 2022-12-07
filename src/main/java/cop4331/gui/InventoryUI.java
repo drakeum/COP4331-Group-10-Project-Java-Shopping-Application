@@ -186,6 +186,7 @@ public class InventoryUI extends JFrame implements ActionListener {
                         Boolean exists = checkCartForItem(value);
                         if(!exists){
                         cart.addItem(value);
+                        cart.updateTotalPayment();
                         }
                         System.out.println(cart.size());
                     }
