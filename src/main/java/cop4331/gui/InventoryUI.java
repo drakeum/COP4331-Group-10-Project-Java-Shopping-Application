@@ -8,6 +8,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
@@ -26,7 +27,7 @@ public class InventoryUI extends JFrame implements ActionListener {
     private JButton homeButton = new JButton();
     private JButton addItemButton = new JButton();
     private JButton storeInfoButton = new JButton();
-    private Inventory inv = Inventory.getInstance();
+    private Inventory inv;
     private JPanel pane = new JPanel();
     private ImageIcon home = new ImageIcon(new ImageIcon("home.png").getImage().getScaledInstance(50, 50, Image.SCALE_DEFAULT));
     private JButton editButton = new JButton("Edit");
@@ -39,6 +40,17 @@ public class InventoryUI extends JFrame implements ActionListener {
 
     public InventoryUI(Boolean userType)
     {
+        try
+        {
+            Inventory.getInstance().load();
+        } catch (IOException e)
+        {
+            throw new RuntimeException(e);
+        } catch (ClassNotFoundException e)
+        {
+            throw new RuntimeException(e);
+        }
+        inv = Inventory.getInstance();
         userAccess = userType;
         homeButton.setIcon(home);
         if (!userType)

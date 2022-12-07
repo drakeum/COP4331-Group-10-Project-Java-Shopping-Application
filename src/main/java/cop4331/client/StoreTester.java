@@ -14,17 +14,9 @@ public class StoreTester
 
         Inventory inventory = Inventory.getInstance();
 
-        inventory.addProduct(10, "car", 20, 15, 60);
-        inventory.addProduct(12, "computer", 20, 15, 50);
-        inventory.addProduct(14, "tv", 20, 15, 40);
-        inventory.addProduct(15, "house", 20, 15, 50);
-        inventory.addProduct(16, "house2", 20, 15, 40);
-        inventory.addProduct(17, "house2", 20, 15, 30);
-        inventory.addProduct(18, "house2", 20, 15, 20);
-
         //new CartUI();
-        //new LoginUI();
-        new InventoryUI(false);
+        new LoginUI();
+        //new InventoryUI(false);
 
     }
 }
