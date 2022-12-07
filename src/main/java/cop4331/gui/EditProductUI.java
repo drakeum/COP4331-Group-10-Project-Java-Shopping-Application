@@ -68,7 +68,7 @@ public class EditProductUI extends JFrame {
               public void actionPerformed(ActionEvent e){
               inv.editProduct(p1.getId(),textFieldName.getText(),Integer.parseInt(textFieldQuantity.getText()),Double.parseDouble(textFieldCost.getText()),Double.parseDouble(textFieldPrice.getText()),Integer.parseInt(textFieldAmountToBeSold.getText()));
               confirmationUI.dispose();
-              InventoryUI inv = new InventoryUI(true);
+              new InventoryUI(true);
            }
          });
        
@@ -77,7 +77,7 @@ public class EditProductUI extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e){
             confirmationUI.dispose();
-            InventoryUI inv = new InventoryUI(true);
+            new InventoryUI(true);
            }    
         });
        
@@ -86,7 +86,7 @@ public class EditProductUI extends JFrame {
     returnButton.addActionListener(new ActionListener(){
     @Override
      public void actionPerformed(ActionEvent e){
-      InventoryUI inv = new InventoryUI(true);
+      new InventoryUI(true);
       dispose();
      }
     });

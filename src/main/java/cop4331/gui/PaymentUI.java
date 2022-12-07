@@ -8,10 +8,12 @@ import java.awt.*;
  */
 public class PaymentUI extends JFrame {
     public PaymentUI(double totalPrice) {
+        
         this.setLayout(new FlowLayout(FlowLayout.LEFT));
         this.setTitle("Payment");
         this.setLocation(400, 100);
         this.setResizable(false);
         this.setSize(400,450);
+        
     }
 }

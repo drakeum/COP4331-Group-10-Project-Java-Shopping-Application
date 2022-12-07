@@ -113,7 +113,7 @@ public class InventoryUI extends JFrame implements ActionListener {
                     @Override
                     public void actionPerformed(ActionEvent e)
                     {
-                        EditProductUI prod = new EditProductUI(value);
+                        new EditProductUI(value);
                         dispose();
                     }
 
@@ -140,7 +140,7 @@ public class InventoryUI extends JFrame implements ActionListener {
                             {
                                 inv.removeProduct(value.getId());
                                 confirmationUI.dispose();
-                                InventoryUI inv = new InventoryUI(true);
+                                new InventoryUI(true);
                             }
                         });
                         pane.add(cancelButton);
@@ -150,7 +150,7 @@ public class InventoryUI extends JFrame implements ActionListener {
                             public void actionPerformed(ActionEvent e)
                             {
                                 confirmationUI.dispose();
-                                InventoryUI inv = new InventoryUI(true);
+                                new InventoryUI(true);
                             }
                         });
 
@@ -171,7 +171,6 @@ public class InventoryUI extends JFrame implements ActionListener {
                     {
                         Boolean exists = checkCartForItem(value);
                         if(!exists){
-                        System.out.println("added");
                         cart.addItem(value);
                         }
                         System.out.println(cart.size());
@@ -217,8 +216,7 @@ public class InventoryUI extends JFrame implements ActionListener {
      @Override
  public void actionPerformed(ActionEvent e) {
   if(e.getSource()==comboBox) {
-   String order = comboBox.getSelectedItem().toString();
-   switch(order) {
+   switch(comboBox.getSelectedItem().toString()) {
   case "Name asc" -> {
       inv.sortByNameAsc();
           }
@@ -236,7 +234,7 @@ public class InventoryUI extends JFrame implements ActionListener {
           }
 }
    dispose();
-   InventoryUI newUI = new InventoryUI(userAccess);
+   new InventoryUI(userAccess);
   }
  }
  
