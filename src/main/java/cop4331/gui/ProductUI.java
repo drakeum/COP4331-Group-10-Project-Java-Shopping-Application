@@ -49,16 +49,17 @@ public class ProductUI extends JFrame
      /**
      * adds the full product information that is available both to the user and seller
      */
-    public void viewFullProductDetails() {  
+    public JPanel viewFullProductDetails() {  
         
         quantity.setText(("Quantity: " + Integer.toString(p.getQuantity())));
         quantity.setFont(new Font("MV Boli", Font.PLAIN,35));
         quantity.setBorder(BorderFactory.createLineBorder(Color.black));
         quantity.setHorizontalAlignment(SwingConstants.CENTER);
         insidePanel.add(quantity);
+        
         this.add(insidePanel);
         this.setVisible(true);
-        
+        return insidePanel;
     }
 
      /**

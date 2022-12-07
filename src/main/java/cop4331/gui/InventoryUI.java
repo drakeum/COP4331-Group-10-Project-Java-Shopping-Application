@@ -35,6 +35,7 @@ public class InventoryUI extends JFrame implements ActionListener {
     private JPanel panel2 = new JPanel(new GridLayout(0, 2, 50, 50));
     private JComboBox comboBox;
     private Boolean userAccess;
+    private JPanel panel3 = new JPanel();
     private String[] order = {"Name asc","Name dsc","Price asc","Price dsc"};
     private Cart cart = Cart.getInstance();
 
@@ -175,7 +176,20 @@ public class InventoryUI extends JFrame implements ActionListener {
             } else
             {
                 JButton addToCartButton = new JButton("Add");
+                JButton addToCartFromViewButton = new JButton("Add");
                 JButton viewDetailsButton = new JButton("View");
+                addToCartFromViewButton.addActionListener(new ActionListener()
+                {
+                    @Override
+                    public void actionPerformed(ActionEvent e)
+                    {
+                        Boolean exists = checkCartForItem(value);
+                        if(!exists){
+                        cart.addItem(value);
+                        }
+                        System.out.println(cart.size());
+                    }
+                });
                 addToCartButton.addActionListener(new ActionListener()
                 {
                     @Override
@@ -198,7 +212,8 @@ public class InventoryUI extends JFrame implements ActionListener {
                     public void actionPerformed(ActionEvent e)
                     {
                         ProductUI p1 = new ProductUI(value, userType);
-                        p1.viewFullProductDetails();
+                        panel3 = p1.viewFullProductDetails();
+                        panel3.add(addToCartFromViewButton);
                     }
                 });
             }
