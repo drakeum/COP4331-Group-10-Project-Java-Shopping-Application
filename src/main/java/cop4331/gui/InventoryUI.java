@@ -35,6 +35,7 @@ public class InventoryUI extends JFrame implements ActionListener {
     private JComboBox comboBox;
     private Boolean userAccess;
     private String[] order = {"Name asc","Name dsc","Price asc","Price dsc"};
+    private Cart cart = Cart.getInstance();
 
     public InventoryUI(Boolean userType)
     {
@@ -168,7 +169,6 @@ public class InventoryUI extends JFrame implements ActionListener {
                     @Override
                     public void actionPerformed(ActionEvent e)
                     {
-                        Cart cart = Cart.getInstance();
                         Boolean exists = checkCartForItem(value);
                         if(!exists){
                         System.out.println("added");
@@ -241,19 +241,16 @@ public class InventoryUI extends JFrame implements ActionListener {
  }
  
  private Boolean checkCartForItem(Product value){
-   Cart cart = Cart.getInstance();
    Iterator<Product> it = cart.getCartItems();
    Boolean exists = false;
 
    while(it.hasNext()) {
+       System.out.println(value);
+       System.out.println(it);
           if(it.next().equals(value)){
-             System.out.println("already in the cart");
               exists = true;
               break;
             }
-          if(it.hasNext()) {
-            it.next();
-           }
       }
    return exists;
  }

@@ -30,6 +30,15 @@ public class CartIterator implements Iterator<Product>
     {
         return current < cartItems.size();
     }
+    
+    /**
+     * Returns the Product at the iterator's first position in the array list to be able to effectively iterate.
+     * @return the Product at the iterator's first position in the array list.
+     */
+    public Product firstLoc()
+    {
+        return cartItems.get(0);
+    }
 
     /**
      * Returns the Product at the iterator's current position and moves the iterator's current position up by one
@@ -40,5 +49,4 @@ public class CartIterator implements Iterator<Product>
     {
         return cartItems.get(current++);
     }
-    
 }
