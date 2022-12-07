@@ -203,6 +203,7 @@ public class Inventory implements Serializable
         productList.put(newProduct.getId(), newProduct);
         StoreInfo.getInstance().buyProductForStore(newProduct, quantity);
         newProduct.setQuantity(quantity);
+        System.out.println("Added new product to inventory and bought " + newProduct.getQuantity() + " of it for cost " + newProduct.getCost() + " each");
         try
         {
             save();

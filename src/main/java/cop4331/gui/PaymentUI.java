@@ -1,4 +1,5 @@
 package cop4331.gui;
+
 import javax.swing.*;
 import java.awt.*;
 import java.util.concurrent.TimeUnit;
@@ -6,21 +7,23 @@ import java.util.concurrent.TimeUnit;
 /**
  * @author Tommy Las
  */
-public class PaymentUI extends JFrame {
-    public PaymentUI(double totalPrice) {
+public class PaymentUI extends JFrame
+{
+    public PaymentUI(double totalPrice)
+    {
 
         this.setLayout(new FlowLayout());
         this.setTitle("Payment");
         this.setLocation(400, 100);
         this.setResizable(false);
-        this.setSize(400,450);
+        this.setSize(400, 450);
 
         JLabel title = new JLabel();
         title.setText("Enter Payment Information: ");
         title.setFont(new Font("Calibri", Font.BOLD, 20));
         this.add(title);
 
-        JPanel formPanel = new JPanel(new GridLayout(4,1));
+        JPanel formPanel = new JPanel(new GridLayout(4, 1));
 
         JLabel nameLabel = new JLabel("Full Name: ");
 
@@ -55,25 +58,29 @@ public class PaymentUI extends JFrame {
         JPanel footerPanel = new JPanel(new GridLayout(3, 1));
 
         JButton pay = new JButton("Pay");
-        pay.addActionListener(e -> {
-            try {
-                Thread.sleep( 2000);
-            } catch (InterruptedException ex) {
+        pay.addActionListener(e ->
+        {
+            try
+            {
+                Thread.sleep(2000);
+            } catch (InterruptedException ex)
+            {
                 throw new RuntimeException(ex);
             }
 
-            JOptionPane.showMessageDialog(null, "Payment Successful!", "Success",JOptionPane.INFORMATION_MESSAGE );
+            JOptionPane.showMessageDialog(null, "Payment Successful!", "Success", JOptionPane.INFORMATION_MESSAGE);
             this.dispose();
         });
 
         JButton cancel = new JButton("Cancel");
-        cancel.addActionListener(e -> {
+        cancel.addActionListener(e ->
+        {
             this.dispose();
         });
 
         this.add(formPanel);
 
-        JLabel priceLabel = new JLabel("Price is: " + String.format("%.2f",totalPrice));
+        JLabel priceLabel = new JLabel("Price is: " + String.format("%.2f", totalPrice));
         priceLabel.setFont(new Font("Calibri", Font.BOLD, 13));
         footerPanel.add(priceLabel);
 

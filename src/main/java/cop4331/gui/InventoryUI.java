@@ -15,11 +15,12 @@ import java.util.LinkedHashMap;
 
 /**
  * @author Mark A.
- * a store inventory interface for both the seller and user, depending on who is logged in. 
+ * a store inventory interface for both the seller and user, depending on who is logged in.
  * If the seller is logged in then they can edit and remove items.
  * Users can view items in detail and also add them to their cart.
  */
-public class InventoryUI extends JFrame implements ActionListener {
+public class InventoryUI extends JFrame implements ActionListener
+{
 
     private LinkedHashMap<Integer, Product> productList = new LinkedHashMap<>();
 
@@ -36,7 +37,7 @@ public class InventoryUI extends JFrame implements ActionListener {
     private JComboBox comboBox;
     private Boolean userAccess;
     private JPanel panel3 = new JPanel();
-    private String[] order = {"Name asc","Name dsc","Price asc","Price dsc"};
+    private String[] order = {"Name asc", "Name dsc", "Price asc", "Price dsc"};
     private Cart cart = Cart.getInstance();
 
     public InventoryUI(Boolean userType)
@@ -78,10 +79,10 @@ public class InventoryUI extends JFrame implements ActionListener {
         this.setSize(800, 1000);
         productList = inv.getProductList();
         this.setLayout(new BorderLayout());
- 
+
         comboBox = new JComboBox(order);
         comboBox.addActionListener(this);
-        
+
         panel1.add(comboBox);
         panel1.add(homeButton);
         if (!userType)
@@ -184,9 +185,10 @@ public class InventoryUI extends JFrame implements ActionListener {
                     public void actionPerformed(ActionEvent e)
                     {
                         Boolean exists = checkCartForItem(value);
-                        if(!exists){
-                        cart.addItem(value);
-                        cart.updateTotalPayment();
+                        if (!exists)
+                        {
+                            cart.addItem(value);
+                            cart.updateTotalPayment();
                         }
                         System.out.println(cart.size());
                     }
@@ -197,8 +199,9 @@ public class InventoryUI extends JFrame implements ActionListener {
                     public void actionPerformed(ActionEvent e)
                     {
                         Boolean exists = checkCartForItem(value);
-                        if(!exists){
-                        cart.addItem(value);
+                        if (!exists)
+                        {
+                            cart.addItem(value);
                         }
                         System.out.println(cart.size());
                     }
@@ -241,45 +244,57 @@ public class InventoryUI extends JFrame implements ActionListener {
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
 
-     @Override
-    public void actionPerformed(ActionEvent e) {
-        if(e.getSource()==comboBox) {
-    switch(comboBox.getSelectedItem().toString()) {
-        case "Name asc" -> {
-            inv.sortByNameAsc();
-          }
-        case "Name dsc" -> {
-            inv.sortByNameDesc();
-          }
-        case "Price asc" -> {
-            inv.sortByPriceAsc();
-          }
-        case "Price dsc" -> {
-            inv.sortByPriceDesc();
-          }
-        default -> {
-      break;
-          }
+    @Override
+    public void actionPerformed(ActionEvent e)
+    {
+        if (e.getSource() == comboBox)
+        {
+            switch (comboBox.getSelectedItem().toString())
+            {
+                case "Name asc" ->
+                {
+                    inv.sortByNameAsc();
+                }
+                case "Name dsc" ->
+                {
+                    inv.sortByNameDesc();
+                }
+                case "Price asc" ->
+                {
+                    inv.sortByPriceAsc();
+                }
+                case "Price dsc" ->
+                {
+                    inv.sortByPriceDesc();
+                }
+                default ->
+                {
+                    break;
+                }
+            }
+            dispose();
+            new InventoryUI(userAccess);
+        }
     }
-   dispose();
-   new InventoryUI(userAccess);
-  }
- }
- 
+
     /**
-    * checks to see if the item is already in the cart
-    * @return if the item is in the cart or not
-    */
-    private Boolean checkCartForItem(Product value){
-     
+     * checks to see if the item is already in the cart
+     *
+     * @return if the item is in the cart or not
+     */
+    private Boolean checkCartForItem(Product value)
+    {
+
         Iterator<Product> it = cart.getCartItems();
-   
-        while(it.hasNext()) {
-            if(it.next().equals(value)){
+
+        while (it.hasNext())
+        {
+            if (it.next().equals(value))
+            {
                 return true;
             }
         }
-    return false;
+        return false;
     }
- 
+
 }
