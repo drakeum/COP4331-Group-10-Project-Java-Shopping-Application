@@ -12,6 +12,7 @@ import javax.swing.*;
 /**
  *
  * @author Mark A.
+ * interface for the seller to add items
  */
 public class NewProductUI extends JFrame {
     private JLabel id = new JLabel("id: ");
@@ -32,6 +33,7 @@ public class NewProductUI extends JFrame {
     public NewProductUI(){
     
     this.setLayout(new BorderLayout());
+    this.setSize(800,1000);
  
     JPanel panel2 = new JPanel();
     panel2.setPreferredSize(new Dimension(600, 600));
@@ -49,24 +51,25 @@ public class NewProductUI extends JFrame {
     panel1.add(textFieldPrice);
     panel1.add(saveButton);
     panel1.add(returnButton);
-    this.setSize(800,1000);
+
+    
     saveButton.addActionListener(new ActionListener(){
     @Override
      public void actionPerformed(ActionEvent e){
       inv.addProduct(Integer.parseInt(textFieldId.getText()),textFieldName.getText(),Integer.parseInt(textFieldQuantity.getText()),Double.parseDouble(textFieldCost.getText()),Double.parseDouble(textFieldPrice.getText()));
       dispose();
-      InventoryUI invUI = new InventoryUI(true);
+      new InventoryUI(true);
      }
     });
+    
     returnButton.addActionListener(new ActionListener(){
     @Override
      public void actionPerformed(ActionEvent e){
-      InventoryUI inv = new InventoryUI(true);
+      new InventoryUI(true);
       dispose();
      }
     });
 
-    
     this.add(panel2, BorderLayout.CENTER);
     this.setVisible(true);
     }

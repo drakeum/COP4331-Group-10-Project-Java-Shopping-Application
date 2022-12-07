@@ -3,19 +3,17 @@ import javax.swing.*;
 import java.awt.*;
 import java.util.concurrent.TimeUnit;
 
-
 /**
  * @author Tommy Las
  */
 public class PaymentUI extends JFrame {
     public PaymentUI(double totalPrice) {
+
         this.setLayout(new FlowLayout());
         this.setTitle("Payment");
         this.setLocation(400, 100);
         this.setResizable(false);
         this.setSize(400,450);
-
-
 
         JLabel title = new JLabel();
         title.setText("Enter Payment Information: ");
