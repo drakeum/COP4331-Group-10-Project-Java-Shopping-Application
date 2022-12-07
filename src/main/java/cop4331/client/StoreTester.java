@@ -21,7 +21,8 @@ public class StoreTester
         inventory.addProduct(16, "house2", 20, 15, 80);
         inventory.addProduct(17, "house2", 20, 15, 80);
         inventory.addProduct(18, "house2", 20, 15, 80);
-        
-        new LoginUI();
+
+        new CartUI();
+        //new LoginUI();
     }
 }
