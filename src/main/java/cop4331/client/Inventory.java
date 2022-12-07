@@ -51,6 +51,15 @@ public class Inventory implements Serializable
         }
         //set inventory equal to sorted hashmap
         productList = sortedItems;
+        try
+        {
+            save();
+        }
+        catch (IOException e)
+        {
+            System.out.println("IOException occurred");
+            throw new RuntimeException(e);
+        }
     }
 
 
@@ -77,6 +86,15 @@ public class Inventory implements Serializable
         }
         //set inventory equal to sorted hashmap
         productList = sortedItems;
+        try
+        {
+            save();
+        }
+        catch (IOException e)
+        {
+            System.out.println("IOException occurred");
+            throw new RuntimeException(e);
+        }
     }
 
     /**
@@ -100,6 +118,15 @@ public class Inventory implements Serializable
         }
         //set inventory equal to sorted hashmap
         productList = sortedItems;
+        try
+        {
+            save();
+        }
+        catch (IOException e)
+        {
+            System.out.println("IOException occurred");
+            throw new RuntimeException(e);
+        }
     }
 
     /**
@@ -125,6 +152,15 @@ public class Inventory implements Serializable
         }
         //set inventory equal to sorted hashmap
         productList = sortedItems;
+        try
+        {
+            save();
+        }
+        catch (IOException e)
+        {
+            System.out.println("IOException occurred");
+            throw new RuntimeException(e);
+        }
     }
 
     /**
