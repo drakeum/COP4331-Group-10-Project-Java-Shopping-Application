@@ -26,13 +26,13 @@ public class SalesInformationUI extends JFrame
         StoreInfo store = StoreInfo.getInstance();
 
         double s1 = store.getTotalCosts();
-        String s2 = String.valueOf(s1);
+        String s2 = "$" + String.format("%.2f", s1);
 
         double s3 = store.getTotalProfits();
-        String s4 = String.valueOf(s3);
+        String s4 = "$" + String.format("%.2f", s3);
 
         double s5 = store.getTotalRevenue();
-        String s6 = String.valueOf(s5);
+        String s6 = "$" + String.format("%.2f", s5);
 
         JPanel panel = new JPanel();
         this.setSize(1000, 1000);
