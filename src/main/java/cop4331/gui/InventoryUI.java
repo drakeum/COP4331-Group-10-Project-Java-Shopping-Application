@@ -171,42 +171,17 @@ public class InventoryUI extends JFrame implements ActionListener
 
                 JButton removeButton = new JButton("Remove");
                  // Button action listener that routes to the confirmation UI and removes the product 
-                removeButton.addActionListener(new ActionListener()
-                {
-                    @Override
-                    public void actionPerformed(ActionEvent e)
-                    {
+                 removeButton.addActionListener((e) -> {
+                    int confirm = JOptionPane.showOptionDialog(null, "Are you sure you want to remove this item?", "Confirmation", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, null, 0);
 
-                        dispose();
-                        ConfirmationUI confirmationUI = new ConfirmationUI();
-                        pane = confirmationUI.getPanel();
-                        JButton confirmButton = new JButton("Confirm");
-                        JButton cancelButton = new JButton("Cancel");
-                        pane.add(confirmButton);
-                         // Button action listener confirms item removal
-                        confirmButton.addActionListener(new ActionListener()
-                        {
-                            @Override
-                            public void actionPerformed(ActionEvent e)
-                            {
-                                inv.removeProduct(value.getId());
-                                confirmationUI.dispose();
-                                new InventoryUI(true);
-                            }
-                        });
-                        pane.add(cancelButton);
-                         // Button action listener the cancels item removal and returns to the inventoryUI
-                        cancelButton.addActionListener(new ActionListener()
-                        {
-                            @Override
-                            public void actionPerformed(ActionEvent e)
-                            {
-                                confirmationUI.dispose();
-                                new InventoryUI(true);
-                            }
-                        });
-
+                    //item removed, update the cart
+                    if(confirm == 0){
+                        inv.removeProduct(value.getId());
+                        new InventoryUI(true);
+                    } else {
+                        new InventoryUI(true);
                     }
+
                 });
                 editButton.setBounds(200, 100, 100, 50);
                 removeButton.setBounds(200, 100, 100, 50);

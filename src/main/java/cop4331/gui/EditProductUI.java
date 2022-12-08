@@ -58,28 +58,18 @@ public class EditProductUI extends JFrame
         panel1.add(returnButton);
 
         // Button action listener that saves the product data calls a new confirmation UI
-        saveButton.addActionListener(new ActionListener()
-        {
-            @Override
-            public void actionPerformed(ActionEvent e)
-            {
-                String newName = textFieldName.getText();
-                int newQuantity = Integer.parseInt(textFieldQuantity.getText());
-                double newCost = Double.parseDouble(textFieldCost.getText());
-                double newPrice = Double.parseDouble(textFieldPrice.getText());
-                dispose();
-                ConfirmationUI confirmationUI = new ConfirmationUI();
-                pane = confirmationUI.getPanel();
+         saveButton.addActionListener((e) -> {
+                    int confirm = JOptionPane.showOptionDialog(null, "Are you sure you want to edit this item?", "Confirmation", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, null, 0);
 
-                pane.add(confirmButton);
-                confirmButton.addActionListener(new ActionListener()
-                {
-                    @Override
-                    public void actionPerformed(ActionEvent e)
-                    {
-                        /**
-                         * @author Mark A, Hunter B.
-                         */
+                    //item updated, update the cart
+                    /**
+                    * @author Mark A, Hunter B.
+                    */
+                    if(confirm == 0){
+                        String newName = textFieldName.getText();
+                        int newQuantity = Integer.parseInt(textFieldQuantity.getText());
+                        double newCost = Double.parseDouble(textFieldCost.getText());
+                        double newPrice = Double.parseDouble(textFieldPrice.getText());
                         int prevQuant = p1.getQuantity();
                         inv.editProduct(p1.getId(), newName, newQuantity, newCost, newPrice, 0);
                         System.out.println("New item quantity, cost, and price: " + inv.getProductList().get(p1.getId()).getQuantity() + " " + inv.getProductList().get(p1.getId()).getCost() + " " + inv.getProductList().get(p1.getId()).getPrice());
@@ -87,29 +77,15 @@ public class EditProductUI extends JFrame
                         if(prevQuant < newQuantity)
                         {
                             StoreInfo.getInstance().buyProductForStore(inv.getProductList().get(p1.getId()), newQuantity - prevQuant);
-                        }
-                        System.out.println("Current store stats: ");
-                        System.out.println("Costs: " + StoreInfo.getInstance().getTotalCosts());
-                        System.out.println("Revenues: " + StoreInfo.getInstance().getTotalRevenue());
+                        }      
                         StoreInfo.getInstance().calculateProfits();
-                        System.out.println("Profits: " + StoreInfo.getInstance().getTotalProfits());
-                        confirmationUI.dispose();
+                        new InventoryUI(true);
+                    } else {
                         new InventoryUI(true);
                     }
-                });
-                pane.add(cancelButton);
-                cancelButton.addActionListener(new ActionListener()
-                {
-                    @Override
-                    public void actionPerformed(ActionEvent e)
-                    {
-                        confirmationUI.dispose();
-                        new InventoryUI(true);
-                    }
-                });
 
-            }
-        });
+                });
+        
 
         // Button action listener that opens up a new inventoryUI and disposes the current JFrame
         returnButton.addActionListener(new ActionListener()
