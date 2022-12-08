@@ -181,6 +181,7 @@ public class InventoryUI extends JFrame implements ActionListener
                     //item removed, update the cart
                     if(confirm == 0){
                         inv.removeProduct(value.getId());
+                        dispose();
                         new InventoryUI(true);
                     } else {
                         new InventoryUI(true);
