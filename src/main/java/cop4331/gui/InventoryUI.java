@@ -31,7 +31,6 @@ public class InventoryUI extends JFrame implements ActionListener
     private JButton storeInfoButton = new JButton();
     private Inventory inv;
     private JPanel pane = new JPanel();
-    private ImageIcon home = new ImageIcon(new ImageIcon("home.png").getImage().getScaledInstance(50, 50, Image.SCALE_DEFAULT));
     private JButton editButton = new JButton("Edit");
     private JPanel panel1 = new JPanel();
     private JPanel panel2 = new JPanel(new GridLayout(0, 2, 50, 50));
@@ -84,18 +83,7 @@ public class InventoryUI extends JFrame implements ActionListener
          */
         inv = Inventory.getInstance();
         userAccess = userType;
-        homeButton.setIcon(home);
         if (!userType)
-            homeButton.setBounds(30, 30, 30, 30);
-        homeButton.addActionListener(new ActionListener()
-        {
-            @Override
-            public void actionPerformed(ActionEvent e)
-            {
-                InventoryUI homePage = new InventoryUI(userType);
-                dispose();
-            }
-        });
         cartButton.addActionListener(new ActionListener()
         {
             @Override
@@ -114,7 +102,6 @@ public class InventoryUI extends JFrame implements ActionListener
         comboBox.addActionListener(this);
 
         panel1.add(comboBox);
-        panel1.add(homeButton);
         if (!userType)
         {
             ImageIcon cart = new ImageIcon(new ImageIcon("cart.png").getImage().getScaledInstance(50, 50, Image.SCALE_DEFAULT));
