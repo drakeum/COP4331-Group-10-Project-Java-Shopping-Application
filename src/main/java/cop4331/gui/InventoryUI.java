@@ -172,7 +172,11 @@ public class InventoryUI extends JFrame implements ActionListener
                 JButton removeButton = new JButton("Remove");
                   //remove item from cart & update cart
                 removeButton.addActionListener((e) -> {
-                    int confirm = JOptionPane.showOptionDialog(null, "Are you sure you want to remove this item?", "Confirmation", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, null, 0);
+                    String text = "Are you sure you want to remove this item?";
+                    String textType = "Confirmation";
+                    ConfirmationUI conf = new ConfirmationUI(text, textType);
+                    int confirm = conf.getSelection();
+                   
 
                     //item removed, update the cart
                     if(confirm == 0){

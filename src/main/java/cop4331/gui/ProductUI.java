@@ -53,6 +53,7 @@ public class ProductUI extends JFrame
 
     /**
      * adds the full product information that is available both to the user and seller
+     * @return returns the instance of the UI panel
      */
     public JPanel viewFullProductDetails()
     {
