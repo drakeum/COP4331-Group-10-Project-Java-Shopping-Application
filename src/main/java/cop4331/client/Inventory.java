@@ -271,8 +271,9 @@ public class Inventory implements Serializable
             throw new NoSuchElementException();
         }
         Product editedProduct = new Product(id, name, quantity, cost, price);
+        System.out.println("Edited item quantity, cost, and price: " + editedProduct.getQuantity() + " " + editedProduct.getCost() + " " + editedProduct.getPrice());
         editedProduct.setAmountToBeSold(amountToBeSold);
-        productList.replace(id, editedProduct);
+        productList.put(id, editedProduct);
         try
         {
             save();

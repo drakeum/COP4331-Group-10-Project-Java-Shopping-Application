@@ -9,6 +9,7 @@ import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 import javax.swing.*;
 
 /**
@@ -61,7 +62,10 @@ public class EditProductUI extends JFrame
             @Override
             public void actionPerformed(ActionEvent e)
             {
-
+                String newName = textFieldName.getText();
+                int newQuantity = Integer.parseInt(textFieldQuantity.getText());
+                double newCost = Double.parseDouble(textFieldCost.getText());
+                double newPrice = Double.parseDouble(textFieldPrice.getText());
                 dispose();
                 ConfirmationUI confirmationUI = new ConfirmationUI();
                 pane = confirmationUI.getPanel();
@@ -76,10 +80,12 @@ public class EditProductUI extends JFrame
                          * @author Mark A, Hunter B.
                          */
                         int prevQuant = p1.getQuantity();
-                        inv.editProduct(p1.getId(), textFieldName.getText(), Integer.parseInt(textFieldQuantity.getText()), Double.parseDouble(textFieldCost.getText()), Double.parseDouble(textFieldPrice.getText()), 0);
-                        if(prevQuant < Integer.parseInt(textFieldQuantity.getText()))
+                        inv.editProduct(p1.getId(), newName, newQuantity, newCost, newPrice, 0);
+                        System.out.println("New item quantity, cost, and price: " + inv.getProductList().get(p1.getId()).getQuantity() + " " + inv.getProductList().get(p1.getId()).getCost() + " " + inv.getProductList().get(p1.getId()).getPrice());
+
+                        if(prevQuant < newQuantity)
                         {
-                            StoreInfo.getInstance().buyProductForStore(p1, Integer.parseInt(textFieldQuantity.getText()) - prevQuant);
+                            StoreInfo.getInstance().buyProductForStore(inv.getProductList().get(p1.getId()), newQuantity - prevQuant);
                         }
                         System.out.println("Current store stats: ");
                         System.out.println("Costs: " + StoreInfo.getInstance().getTotalCosts());
