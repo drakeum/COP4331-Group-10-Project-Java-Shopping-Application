@@ -106,7 +106,7 @@ public class CartUI extends JFrame {
                  * @author Tommy L.
                  */
                 JLabel productLabel = new JLabel(product.getName() + " - $" + product.getPrice());
-                productLabel.setBounds(55,5,100, 20);
+                productLabel.setBounds(55,5,300, 20);
 
                 JButton removeButton = new JButton("x");
                 removeButton.setMargin(new Insets(0, 0, 0, 0));
