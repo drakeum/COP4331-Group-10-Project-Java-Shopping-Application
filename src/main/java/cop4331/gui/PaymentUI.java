@@ -89,6 +89,8 @@ public class PaymentUI extends JFrame
             Cart.getInstance().confirmCart();
             //payment successful, show pop-up message
             JOptionPane.showMessageDialog(null, "Payment Successful!", "Success", JOptionPane.INFORMATION_MESSAGE);
+            Cart.getInstance().emptyCart();
+            new InventoryUI(false);
             this.dispose();
         });
 

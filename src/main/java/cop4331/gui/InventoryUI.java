@@ -129,6 +129,14 @@ public class InventoryUI extends JFrame implements ActionListener
             ImageIcon addItem = new ImageIcon(new ImageIcon("addItem.png").getImage().getScaledInstance(50, 50, Image.SCALE_DEFAULT));
             addItemButton.setIcon(addItem);
             addItemButton.setBounds(30, 30, 30, 30);
+            storeInfoButton.addActionListener(new ActionListener()
+            {
+                @Override
+                public void actionPerformed(ActionEvent e)
+                {
+                    SalesInformationUI salesInfo = new SalesInformationUI();
+                }
+            });
             addItemButton.addActionListener(new ActionListener()
             {
                 @Override

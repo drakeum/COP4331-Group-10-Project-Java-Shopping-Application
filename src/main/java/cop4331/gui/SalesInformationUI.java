@@ -20,7 +20,7 @@ public class SalesInformationUI extends JFrame   {
 
  
   public SalesInformationUI() {
-      
+      //this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
       StoreInfo store = StoreInfo.getInstance();
       
       double s1 = store.getTotalCosts();
@@ -77,9 +77,7 @@ public class SalesInformationUI extends JFrame   {
     totalrevenuepLabel.setFont(new Font("Verdana", Font.PLAIN, 25));
     totalrevenuepLabel.setBounds(250, 5, 350, 750);
     panel.add(totalrevenuepLabel);
-    
-    
-    
+
     this.setVisible(true);
 
 }
