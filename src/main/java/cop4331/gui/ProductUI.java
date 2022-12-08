@@ -84,7 +84,11 @@ public class ProductUI extends JFrame
         quantity.setBorder(BorderFactory.createLineBorder(Color.black));
         quantity.setHorizontalAlignment(SwingConstants.CENTER);
         cost.setFont(new Font("MV Boli", Font.PLAIN, 35));
-        cost.setText(("Cost: $" + Double.toString(product.getCost())));
+        if(product.getCost() < 1){
+            cost.setText(("Cost: " + Double.toString(product.getCost()) + "¢"));
+        } else {
+            cost.setText(("Cost: $" + Double.toString(product.getCost())));
+        }
         cost.setBorder(BorderFactory.createLineBorder(Color.black));
         cost.setHorizontalAlignment(SwingConstants.CENTER);
 
@@ -102,7 +106,11 @@ public class ProductUI extends JFrame
     {
 
         name.setText(("Item: " + product.getName()));
-        price.setText(("Price: $" + Double.toString(product.getPrice())));
+        if(product.getPrice() < 1.00){
+             price.setText(("Price: " + Double.toString(product.getPrice() ) + "¢"));
+        } else {
+            price.setText(("Price: $" + Double.toString(product.getPrice())));
+        }
         name.setFont(new Font("MV Boli", Font.PLAIN, 35));
         name.setBorder(BorderFactory.createLineBorder(Color.black));
         name.setHorizontalAlignment(SwingConstants.CENTER);
