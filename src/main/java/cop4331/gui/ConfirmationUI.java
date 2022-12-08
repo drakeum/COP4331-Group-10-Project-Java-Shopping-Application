@@ -14,7 +14,7 @@ public class ConfirmationUI extends JFrame
     private JPanel insidePanel = new JPanel();
     private JLabel text = new JLabel("Please confirm or cancel your changes");
     private JPanel panel1 = new JPanel(new GridLayout(0, 2));
-
+    
     public ConfirmationUI()
     {
 
@@ -31,11 +31,18 @@ public class ConfirmationUI extends JFrame
         this.setVisible(true);
     }
 
+     /**
+     * returns the JPanel 
+     * @return the JPanel to be used with another frame
+     */
     public JPanel getPanel()
     {
         return insidePanel;
     }
 
+     /**
+     * removes the current JFrame
+     */
     public void dipose()
     {
         dispose();

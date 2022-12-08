@@ -129,6 +129,10 @@ public class InventoryUI extends JFrame implements ActionListener
             ImageIcon addItem = new ImageIcon(new ImageIcon("addItem.png").getImage().getScaledInstance(50, 50, Image.SCALE_DEFAULT));
             addItemButton.setIcon(addItem);
             addItemButton.setBounds(30, 30, 30, 30);
+            
+            /**
+            * Button action listener that routes to the sales info UI
+            */
             storeInfoButton.addActionListener(new ActionListener()
             {
                 @Override
@@ -137,6 +141,8 @@ public class InventoryUI extends JFrame implements ActionListener
                     SalesInformationUI salesInfo = new SalesInformationUI();
                 }
             });
+            
+            // Button action listener that routes to the add product UI
             addItemButton.addActionListener(new ActionListener()
             {
                 @Override
@@ -151,7 +157,10 @@ public class InventoryUI extends JFrame implements ActionListener
         }
 
 
+        // an ArrayList that stores the JPanels for the products
         ArrayList<JPanel> pUI = new ArrayList<>();
+        
+        // iterating through each product and adding it to the Jpanel Array list
         productList.forEach((key, value) ->
         {
             ProductUI p = new ProductUI(value, userType);
@@ -160,6 +169,8 @@ public class InventoryUI extends JFrame implements ActionListener
             {
 
                 JButton editButton = new JButton("Edit");
+                
+                // Button action listener that routes to the edit product UI
                 editButton.addActionListener(new ActionListener()
                 {
                     @Override
@@ -172,6 +183,7 @@ public class InventoryUI extends JFrame implements ActionListener
                 });
 
                 JButton removeButton = new JButton("Remove");
+                 // Button action listener that routes to the confirmation UI and removes the product 
                 removeButton.addActionListener(new ActionListener()
                 {
                     @Override
@@ -184,7 +196,7 @@ public class InventoryUI extends JFrame implements ActionListener
                         JButton confirmButton = new JButton("Confirm");
                         JButton cancelButton = new JButton("Cancel");
                         pane.add(confirmButton);
-
+                         // Button action listener confirms item removal
                         confirmButton.addActionListener(new ActionListener()
                         {
                             @Override
@@ -196,6 +208,7 @@ public class InventoryUI extends JFrame implements ActionListener
                             }
                         });
                         pane.add(cancelButton);
+                         // Button action listener the cancels item removal and returns to the inventoryUI
                         cancelButton.addActionListener(new ActionListener()
                         {
                             @Override
@@ -217,6 +230,8 @@ public class InventoryUI extends JFrame implements ActionListener
                 JButton addToCartButton = new JButton("Add");
                 JButton addToCartFromViewButton = new JButton("Add");
                 JButton viewDetailsButton = new JButton("View");
+                
+                // Button action listener that adds items to the cart and updates total payment from the detailed panel
                 addToCartFromViewButton.addActionListener(new ActionListener()
                 {
                     @Override
@@ -228,9 +243,10 @@ public class InventoryUI extends JFrame implements ActionListener
                             cart.addItem(value);
                             cart.updateTotalPayment();
                         }
-                        System.out.println(cart.size());
                     }
                 });
+                
+                 // Button action listener that adds items to the cart
                 addToCartButton.addActionListener(new ActionListener()
                 {
                     @Override
@@ -241,13 +257,13 @@ public class InventoryUI extends JFrame implements ActionListener
                         {
                             cart.addItem(value);
                         }
-                        System.out.println(cart.size());
                     }
                 });
                 addToCartButton.setBounds(200, 100, 100, 50);
                 viewDetailsButton.setBounds(200, 100, 100, 50);
                 tempPanel.add(addToCartButton);
                 tempPanel.add(viewDetailsButton);
+                 // Button action listener that opens up a detailed panel containing more information about the product
                 viewDetailsButton.addActionListener(new ActionListener()
                 {
                     @Override
@@ -262,6 +278,8 @@ public class InventoryUI extends JFrame implements ActionListener
             tempPanel.setBorder(BorderFactory.createLineBorder(Color.black));
             pUI.add(tempPanel);
         });
+        
+        // iterating through the productUI JPanels and adding it to the main panel.
         for (int i = 0; i < pUI.size(); i++)
         {
             panel2.add(pUI.get(i));
@@ -282,6 +300,7 @@ public class InventoryUI extends JFrame implements ActionListener
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
 
+     // action listener that sorts the products based off the selected drop down selection.
     @Override
     public void actionPerformed(ActionEvent e)
     {

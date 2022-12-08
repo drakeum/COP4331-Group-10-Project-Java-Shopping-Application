@@ -21,8 +21,8 @@ public class ProductUI extends JFrame
     private JLabel cost = new JLabel();
     private JLabel price = new JLabel();
     private JLabel icon = new JLabel();
-    private Product p;
-    JPanel insidePanel = new JPanel(new GridLayout(0, 1, 10, 10));
+    private Product product;
+    private JPanel insidePanel = new JPanel(new GridLayout(0, 1, 10, 10));
 
     /**
      * Constructor for ProductUI
@@ -34,7 +34,8 @@ public class ProductUI extends JFrame
     {
 
         ImageIcon image = new ImageIcon(new ImageIcon("icon.png").getImage().getScaledInstance(40, 40, Image.SCALE_DEFAULT));
-        p = p1;
+        
+        product = p1;
         icon.setHorizontalAlignment(JLabel.CENTER);
         icon.setVerticalAlignment(JLabel.CENTER);
         icon.setIcon(image);
@@ -42,6 +43,7 @@ public class ProductUI extends JFrame
         insidePanel.add(icon);
         getUserPanel();
 
+        // if the user is a seller display the hidden details associated with the product
         if (seller)
         {
             getFullPanel();
@@ -55,7 +57,7 @@ public class ProductUI extends JFrame
     public JPanel viewFullProductDetails()
     {
 
-        quantity.setText(("Quantity: " + Integer.toString(p.getQuantity())));
+        quantity.setText(("Quantity: " + Integer.toString(product.getQuantity())));
         quantity.setFont(new Font("MV Boli", Font.PLAIN, 35));
         quantity.setBorder(BorderFactory.createLineBorder(Color.black));
         quantity.setHorizontalAlignment(SwingConstants.CENTER);
@@ -72,17 +74,17 @@ public class ProductUI extends JFrame
     private void getFullPanel()
     {
 
-        id.setText(("id: " + Integer.toString(p.getId())));
+        id.setText(("id: " + Integer.toString(product.getId())));
         id.setMinimumSize(new Dimension(30, 30));
         id.setFont(new Font("MV Boli", Font.PLAIN, 35));
         id.setBorder(BorderFactory.createLineBorder(Color.black));
         id.setHorizontalAlignment(SwingConstants.CENTER);
-        quantity.setText(("Quantity: " + Integer.toString(p.getQuantity())));
+        quantity.setText(("Quantity: " + Integer.toString(product.getQuantity())));
         quantity.setFont(new Font("MV Boli", Font.PLAIN, 35));
         quantity.setBorder(BorderFactory.createLineBorder(Color.black));
         quantity.setHorizontalAlignment(SwingConstants.CENTER);
         cost.setFont(new Font("MV Boli", Font.PLAIN, 35));
-        cost.setText(("Cost: $" + Double.toString(p.getCost())));
+        cost.setText(("Cost: $" + Double.toString(product.getCost())));
         cost.setBorder(BorderFactory.createLineBorder(Color.black));
         cost.setHorizontalAlignment(SwingConstants.CENTER);
 
@@ -99,8 +101,8 @@ public class ProductUI extends JFrame
     private void getUserPanel()
     {
 
-        name.setText(("Item: " + p.getName()));
-        price.setText(("Price: $" + Double.toString(p.getPrice())));
+        name.setText(("Item: " + product.getName()));
+        price.setText(("Price: $" + Double.toString(product.getPrice())));
         name.setFont(new Font("MV Boli", Font.PLAIN, 35));
         name.setBorder(BorderFactory.createLineBorder(Color.black));
         name.setHorizontalAlignment(SwingConstants.CENTER);

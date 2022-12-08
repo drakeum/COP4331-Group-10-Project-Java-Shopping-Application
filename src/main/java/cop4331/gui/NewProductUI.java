@@ -33,7 +33,7 @@ public class NewProductUI extends JFrame
 
     public NewProductUI()
     {
-
+        // setting the layout for the JFrame
         this.setLayout(new BorderLayout());
         this.setSize(800, 1000);
 
@@ -41,6 +41,7 @@ public class NewProductUI extends JFrame
         panel2.setPreferredSize(new Dimension(600, 600));
         panel2.add(panel1);
 
+        // adding all the JLabels/Buttons to the panel
         panel1.add(id);
         panel1.add(textFieldId);
         panel1.add(name);
@@ -54,7 +55,7 @@ public class NewProductUI extends JFrame
         panel1.add(saveButton);
         panel1.add(returnButton);
 
-
+        // Button action listener that adds a new product to the inventory and refreshes the page.
         saveButton.addActionListener(new ActionListener()
         {
             @Override
@@ -66,6 +67,7 @@ public class NewProductUI extends JFrame
             }
         });
 
+        // Button action listener that opens a new inventoryUI and disposes the current JFrame
         returnButton.addActionListener(new ActionListener()
         {
             @Override

@@ -38,6 +38,7 @@ public class EditProductUI extends JFrame
         this.setLayout(new BorderLayout());
         this.setSize(800, 1000);
 
+        // setting textfield to contain the products data when the frame is opened
         JTextField textFieldName = new JTextField(p1.getName(), 10);
         JTextField textFieldQuantity = new JTextField(Integer.toString(p1.getQuantity()), 10);
         JTextField textFieldCost = new JTextField(Double.toString(p1.getCost()), 10);
@@ -56,7 +57,7 @@ public class EditProductUI extends JFrame
         panel1.add(saveButton);
         panel1.add(returnButton);
 
-
+        // Button action listener that saves the product data calls a new confirmation UI
         saveButton.addActionListener(new ActionListener()
         {
             @Override
@@ -96,9 +97,6 @@ public class EditProductUI extends JFrame
                         new InventoryUI(true);
                     }
                 });
-                /**
-                 * @author Mark A.
-                 */
                 pane.add(cancelButton);
                 cancelButton.addActionListener(new ActionListener()
                 {
@@ -113,6 +111,7 @@ public class EditProductUI extends JFrame
             }
         });
 
+        // Button action listener that opens up a new inventoryUI and disposes the current JFrame
         returnButton.addActionListener(new ActionListener()
         {
             @Override
