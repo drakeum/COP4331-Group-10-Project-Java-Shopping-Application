@@ -88,8 +88,11 @@ public class PaymentUI extends JFrame
             }
             Cart.getInstance().confirmCart();
             //payment successful, show pop-up message
+            /*
+            * Mark A, Tommy Las
+            */
             if(card.getText().length() != 16){
-                JOptionPane.showMessageDialog(null, "Invalid Card Number, Must Be 16 digits", "Please Try Again", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Invalid Card Number, Must Be 16 digits", "Please Try Again", JOptionPane.ERROR_MESSAGE);
             } else {
             JOptionPane.showMessageDialog(null, "Payment Successful!", "Success", JOptionPane.INFORMATION_MESSAGE);
             Cart.getInstance().emptyCart();
