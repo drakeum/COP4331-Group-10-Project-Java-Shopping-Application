@@ -63,22 +63,19 @@ public class EditProductUI extends JFrame
             int newQuantity = Integer.parseInt(textFieldQuantity.getText());
             double newCost = Double.parseDouble(textFieldCost.getText());
             double newPrice = Double.parseDouble(textFieldPrice.getText());
-            int confirm = JOptionPane.showOptionDialog(null, "Are you sure you want to edit this item?", "Confirmation", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, null, 0);
-
+            String text = "Are you sure you want to edit this item?";
+            String textType = "Confirmation";
+            ConfirmationUI conf = new ConfirmationUI(text, textType);
+            int confirm = conf.getSelection();
             // edit item, update the cart
              if(confirm == 0){ 
                 int prevQuant = p1.getQuantity();
                     inv.editProduct(p1.getId(), newName, newQuantity, newCost, newPrice, 0);
-                    System.out.println("New item quantity, cost, and price: " + inv.getProductList().get(p1.getId()).getQuantity() + " " + inv.getProductList().get(p1.getId()).getCost() + " " + inv.getProductList().get(p1.getId()).getPrice());
 
                     if(prevQuant < newQuantity) {
                         StoreInfo.getInstance().buyProductForStore(inv.getProductList().get(p1.getId()), newQuantity - prevQuant);
                     }
-                    System.out.println("Current store stats: ");
-                    System.out.println("Costs: " + StoreInfo.getInstance().getTotalCosts());
-                    System.out.println("Revenues: " + StoreInfo.getInstance().getTotalRevenue());
-                    StoreInfo.getInstance().calculateProfits();
-                    System.out.println("Profits: " + StoreInfo.getInstance().getTotalProfits());
+
                    new InventoryUI(true);
                  } else {
                   new InventoryUI(true);
