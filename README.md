@@ -1,6 +1,8 @@
 # About
 Data classes designed and made by Hunter
+
 UI classes designed and made by Tommy, Mark, and Cesaire
+
 # How to run program
 - Make sure you have Java 18 or higher installed
 - Navigate to /out
